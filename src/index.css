@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply m-0 bg-abyss font-body text-zinc-100 antialiased;
+  background-image: radial-gradient(circle at 25% 18%, rgba(209, 172, 103, 0.08), transparent 32%),
+    radial-gradient(circle at 80% 0%, rgba(74, 107, 154, 0.08), transparent 34%),
+    linear-gradient(180deg, #07080e 0%, #090a13 100%);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(209, 172, 103, 0.4) rgba(255, 255, 255, 0.08);
+}
+
+*::-webkit-scrollbar {
+  width: 9px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(209, 172, 103, 0.66), rgba(127, 37, 48, 0.56));
+  border-radius: 999px;
+}
+
+.title-font {
+  @apply font-title tracking-wide;
+}
+
+.premium-card {
+  @apply rounded-2xl border border-zinc-700/70 bg-steel/75 shadow-glow backdrop-blur-sm;
+}
