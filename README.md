@@ -69,9 +69,10 @@ src/
 
 ### GitHub Pages
 
-1. Ejecuta `npm run build`.
-2. Publica el contenido de `dist/` en la rama/pages del sitio.
-3. Alternativamente, usa una GitHub Action para desplegar `dist`.
+1. Ya incluye workflow automatico en `.github/workflows/deploy.yml`.
+2. Sube el repo a GitHub y haz push a `main`.
+3. En GitHub: `Settings > Pages > Build and deployment > Source: GitHub Actions`.
+4. Cada push a `main` construye y publica `dist` automaticamente.
 
 ### Cloudflare Pages
 
