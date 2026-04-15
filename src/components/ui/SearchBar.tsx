@@ -5,13 +5,13 @@ interface SearchBarProps {
 
 export const SearchBar = ({ value, onChange }: SearchBarProps) => (
   <label className="relative block w-full">
-    <span className="sr-only">Buscar builds, armas o Ashes of War</span>
+    <span className="sr-only">Buscar configuraciones, armas o cenizas de guerra en español o inglés</span>
     <input
       type="search"
       value={value}
       onChange={(event) => onChange(event.target.value)}
-      placeholder="Buscar por arma, build, ceniza o rol..."
-      className="w-full rounded-2xl border border-zinc-600 bg-zinc-900/70 py-3 pl-10 pr-4 text-sm text-zinc-100 placeholder:text-zinc-400 focus:border-rune focus:outline-none focus:ring-2 focus:ring-rune/40"
+      placeholder="Buscar por nombre en español o inglés..."
+      className="w-full rounded-2xl border border-zinc-500 bg-zinc-900/80 py-3 pl-10 pr-4 text-sm font-medium text-zinc-100 placeholder:text-zinc-400 focus:border-rune focus:outline-none focus:ring-2 focus:ring-rune/40"
     />
     <svg
       viewBox="0 0 24 24"

@@ -10,8 +10,8 @@ interface CompareSectionProps {
 export const CompareSection = ({ builds, onOpenBuild }: CompareSectionProps) => (
   <SectionShell
     id="comparador"
-    title="Comparador de Builds"
-    subtitle="Ordena la tabla por cada métrica para decidir qué setup rinde mejor según tu objetivo."
+    title="Comparador"
+    subtitle="Ordena la tabla por cada métrica para decidir qué configuración rinde mejor según tu objetivo."
   >
     <CompareTable builds={builds} onSelectBuild={onOpenBuild} />
   </SectionShell>

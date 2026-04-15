@@ -13,22 +13,19 @@ export const BuildDrawer = ({ build, onClose }: BuildDrawerProps) => {
 
   return (
     <div className="fixed inset-0 z-[60]">
-      <button
-        type="button"
-        className="absolute inset-0 bg-black/70"
-        onClick={onClose}
-        aria-label="Cerrar detalles de build"
-      />
+      <button type="button" className="absolute inset-0 bg-black/70" onClick={onClose} aria-label="Cerrar detalles" />
 
       <aside
         className="absolute right-0 top-0 h-full w-full max-w-xl overflow-y-auto border-l border-zinc-700 bg-zinc-950 p-6 shadow-2xl"
-        aria-label={`Detalles de ${build.name}`}
+        aria-label={`Detalles de ${build.nameEs}`}
       >
         <div className="mb-4 flex items-start justify-between gap-3">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Build Detail</p>
-            <h3 className="title-font mt-1 text-2xl text-zinc-100">{build.name}</h3>
-            <p className="mt-1 text-sm text-zinc-300">{build.type}</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Detalle de configuración</p>
+            <h3 className="title-font mt-1 text-2xl text-zinc-50">{build.nameEs}</h3>
+            <p className="text-xs text-zinc-400">{build.nameEn}</p>
+            <p className="mt-1 text-sm text-zinc-300">{build.typeEs}</p>
+            <p className="text-xs text-zinc-500">{build.typeEn}</p>
           </div>
           <button
             type="button"
@@ -50,19 +47,19 @@ export const BuildDrawer = ({ build, onClose }: BuildDrawerProps) => {
         </div>
 
         <div className="space-y-5 text-sm">
-          <section className="rounded-xl border border-zinc-700/70 bg-zinc-900/50 p-4">
+          <section className="rounded-xl border border-zinc-700/70 bg-zinc-900/60 p-4">
             <h4 className="mb-2 text-xs uppercase tracking-[0.16em] text-rune">Resumen</h4>
             <p className="text-zinc-200">{build.summary}</p>
             <p className="mt-2 text-zinc-300">
               Escalado recomendado: <span className="font-semibold text-zinc-100">{build.scaling}</span>
             </p>
             <p className="text-zinc-300">
-              Momento ideal: <span className="font-semibold text-zinc-100">{build.idealGameStage}</span>
+              Etapa ideal: <span className="font-semibold text-zinc-100">{build.idealGameStage}</span>
             </p>
           </section>
 
-          <section className="rounded-xl border border-zinc-700/70 bg-zinc-900/50 p-4">
-            <h4 className="mb-2 text-xs uppercase tracking-[0.16em] text-rune">Stats y Talismanes</h4>
+          <section className="rounded-xl border border-zinc-700/70 bg-zinc-900/60 p-4">
+            <h4 className="mb-2 text-xs uppercase tracking-[0.16em] text-rune">Stats y talismanes</h4>
             <p className="mb-1 font-semibold text-zinc-100">Stats</p>
             <ul className="mb-3 list-disc space-y-1 pl-4 text-zinc-200">
               {build.loadout.stats.map((entry) => (
@@ -77,9 +74,9 @@ export const BuildDrawer = ({ build, onClose }: BuildDrawerProps) => {
             </ul>
           </section>
 
-          <section className="rounded-xl border border-zinc-700/70 bg-zinc-900/50 p-4">
-            <h4 className="mb-2 text-xs uppercase tracking-[0.16em] text-rune">Buffs y Obtención</h4>
-            <p className="mb-1 font-semibold text-zinc-100">Buffs recomendados</p>
+          <section className="rounded-xl border border-zinc-700/70 bg-zinc-900/60 p-4">
+            <h4 className="mb-2 text-xs uppercase tracking-[0.16em] text-rune">Mejoras y obtención</h4>
+            <p className="mb-1 font-semibold text-zinc-100">Mejoras recomendadas</p>
             <ul className="mb-3 list-disc space-y-1 pl-4 text-zinc-200">
               {build.loadout.buffs.map((entry) => (
                 <li key={entry}>{entry}</li>

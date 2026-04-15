@@ -1,12 +1,12 @@
 export type Tier = "S+" | "S" | "A";
 
 export type RoleBadge =
-  | "Boss Killer"
-  | "AoE Monster"
-  | "Stance Breaker"
-  | "Bleed"
-  | "Beginner Friendly"
-  | "Hyper Carry";
+  | "Matabosses"
+  | "Monstruo de área"
+  | "Rompepostura"
+  | "Hemorragia"
+  | "Fácil de usar"
+  | "Muy dominante";
 
 export type BuildFocus = "bosses" | "area" | "stagger" | "bleed" | "general";
 
@@ -23,6 +23,11 @@ export type FilterKey =
   | "arcane"
   | "infusable"
   | "unique/somber";
+
+export interface LocalizedName {
+  nameEs: string;
+  nameEn: string;
+}
 
 export interface BuildScore {
   bosses: number;
@@ -42,9 +47,11 @@ export interface BuildLoadout {
 export interface BuildEntry {
   id: string;
   rank: number;
-  name: string;
+  nameEs: string;
+  nameEn: string;
   tier: Tier;
-  type: string;
+  typeEs: string;
+  typeEn: string;
   focus: BuildFocus[];
   attributes: BuildAttribute[];
   difficulty: "Baja" | "Media" | "Alta";
@@ -60,15 +67,18 @@ export interface BuildEntry {
 
 export interface HomeHighlight {
   label: string;
-  value: string;
+  valueEs: string;
+  valueEn: string;
   reason: string;
 }
 
 export interface UniqueWeapon {
   id: string;
-  name: string;
+  nameEs: string;
+  nameEn: string;
   tier: Tier;
-  category: string;
+  categoryEs: string;
+  categoryEn: string;
   whyBroken: string;
   bestUses: string[];
   limitations: string[];
@@ -82,8 +92,10 @@ export interface UniqueWeapon {
 
 export interface InfusableSetup {
   id: string;
-  baseWeapon: string;
-  bestAshes: string[];
+  nameEs: string;
+  nameEn: string;
+  baseWeapon: LocalizedName;
+  bestAshes: LocalizedName[];
   recommendedAffinity: string;
   recommendedBuild: string;
   whyBroken: string;
@@ -96,18 +108,21 @@ export interface InfusableSetup {
 
 export interface AshOfWarEntry {
   id: string;
-  name: string;
-  type: string;
-  bestWeapons: string[];
-  excelsAt: "Bosses" | "Área" | "Híbrido";
+  nameEs: string;
+  nameEn: string;
+  typeEs: string;
+  typeEn: string;
+  bestWeapons: LocalizedName[];
+  excelsAt: "Jefes" | "Área" | "Híbrido";
   advantages: string[];
   disadvantages: string[];
   location: string;
 }
 
 export interface RegionItem {
-  name: string;
-  kind: "Arma" | "Ash of War" | "Talismán" | "Buff" | "Hechizo";
+  nameEs: string;
+  nameEn: string;
+  kind: "Arma" | "Ceniza de guerra" | "Talismán" | "Mejora" | "Hechizo";
   note: string;
 }
 

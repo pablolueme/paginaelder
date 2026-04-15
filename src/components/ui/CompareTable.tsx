@@ -10,11 +10,11 @@ interface CompareTableProps {
 }
 
 const sortableHeaders: { label: string; field: SortableField }[] = [
-  { label: "Build", field: "name" },
-  { label: "Bosses", field: "bosses" },
+  { label: "Configuración", field: "name" },
+  { label: "Jefes", field: "bosses" },
   { label: "Área", field: "area" },
-  { label: "Stagger", field: "stagger" },
-  { label: "Bleed", field: "bleed" },
+  { label: "Postura", field: "stagger" },
+  { label: "Hemorragia", field: "bleed" },
   { label: "Facilidad", field: "ease" }
 ];
 
@@ -25,7 +25,7 @@ export const CompareTable = ({ builds, onSelectBuild }: CompareTableProps) => {
   const sortedBuilds = useMemo(() => {
     return [...builds].sort((a, b) => {
       if (sortField === "name") {
-        const result = a.name.localeCompare(b.name);
+        const result = a.nameEs.localeCompare(b.nameEs);
         return sortDirection === "asc" ? result : -result;
       }
 
@@ -44,9 +44,9 @@ export const CompareTable = ({ builds, onSelectBuild }: CompareTableProps) => {
   };
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-zinc-700 bg-zinc-950/60">
-      <table className="min-w-[920px] w-full border-collapse text-left text-sm">
-        <thead className="border-b border-zinc-700 bg-zinc-900/80 text-xs uppercase tracking-[0.12em] text-zinc-300">
+    <div className="overflow-x-auto rounded-2xl border border-zinc-700 bg-zinc-950/70">
+      <table className="min-w-[980px] w-full border-collapse text-left text-sm">
+        <thead className="border-b border-zinc-700 bg-zinc-900/90 text-xs uppercase tracking-[0.12em] text-zinc-200">
           <tr>
             {sortableHeaders.map((header) => {
               const active = header.field === sortField;
@@ -55,9 +55,7 @@ export const CompareTable = ({ builds, onSelectBuild }: CompareTableProps) => {
                   <button
                     type="button"
                     onClick={() => onSort(header.field)}
-                    className={`inline-flex items-center gap-2 transition ${
-                      active ? "text-rune" : "hover:text-zinc-100"
-                    }`}
+                    className={`inline-flex items-center gap-2 transition ${active ? "text-rune" : "hover:text-zinc-100"}`}
                   >
                     {header.label}
                     <span className="text-[10px]">{active ? (sortDirection === "asc" ? "▲" : "▼") : "↕"}</span>
@@ -66,17 +64,20 @@ export const CompareTable = ({ builds, onSelectBuild }: CompareTableProps) => {
               );
             })}
             <th className="px-4 py-3">Escalado</th>
-            <th className="px-4 py-3">Momento ideal</th>
+            <th className="px-4 py-3">Etapa ideal</th>
           </tr>
         </thead>
         <tbody>
           {sortedBuilds.map((build) => (
             <tr
               key={build.id}
-              className="cursor-pointer border-b border-zinc-800/80 text-zinc-200 transition hover:bg-zinc-800/40"
+              className="cursor-pointer border-b border-zinc-800/80 text-zinc-200 transition hover:bg-zinc-800/45"
               onClick={() => onSelectBuild(build)}
             >
-              <td className="px-4 py-3 font-semibold text-zinc-100">{build.name}</td>
+              <td className="px-4 py-3">
+                <p className="font-semibold text-zinc-50">{build.nameEs}</p>
+                <p className="text-xs text-zinc-400">{build.nameEn}</p>
+              </td>
               <td className="px-4 py-3">{build.score.bosses}/10</td>
               <td className="px-4 py-3">{build.score.area}/10</td>
               <td className="px-4 py-3">{build.score.stagger}/10</td>

@@ -12,7 +12,8 @@ interface UniqueWeaponsSectionProps {
   onToggleFavorite: (id: string) => void;
 }
 
-const normalize = (value: string): string => value.toLowerCase();
+const normalize = (value: string): string =>
+  value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 export const UniqueWeaponsSection = ({
   weapons,
@@ -24,14 +25,16 @@ export const UniqueWeaponsSection = ({
     if (!search.trim()) {
       return true;
     }
-    return normalize(`${weapon.name} ${weapon.category} ${weapon.whyBroken}`).includes(normalize(search));
+    return normalize(
+      `${weapon.nameEs} ${weapon.nameEn} ${weapon.categoryEs} ${weapon.categoryEn} ${weapon.whyBroken}`
+    ).includes(normalize(search));
   });
 
   return (
     <SectionShell
       id="somber"
-      title="Mejores Armas Únicas / Somber"
-      subtitle="Fichas premium con puntos fuertes, límites reales, setup recomendado y ruta de obtención."
+      title="Armas únicas"
+      subtitle="Fichas premium con fortalezas, límites reales, configuración recomendada y ruta de obtención."
     >
       <div className="grid gap-4 md:grid-cols-2">
         {filtered.map((weapon) => {
@@ -42,20 +45,22 @@ export const UniqueWeaponsSection = ({
             <Card key={weapon.id}>
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="title-font text-xl text-zinc-100">{weapon.name}</h3>
-                  <p className="text-sm text-zinc-300">{weapon.category}</p>
+                  <h3 className="title-font text-2xl text-zinc-50">{weapon.nameEs}</h3>
+                  <p className="text-xs text-zinc-400">{weapon.nameEn}</p>
+                  <p className="mt-1 text-sm text-zinc-300">{weapon.categoryEs}</p>
+                  <p className="text-xs text-zinc-500">{weapon.categoryEn}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <TierBadge tier={weapon.tier} />
                   <FavoriteToggle
                     active={isFavorite}
                     onToggle={() => onToggleFavorite(favoriteId)}
-                    label={isFavorite ? "Quitar favorita" : "Añadir favorita"}
+                    label={isFavorite ? "Quitar de favoritos" : "Añadir a favoritos"}
                   />
                 </div>
               </div>
 
-              <p className="mb-3 text-sm text-zinc-200">{weapon.whyBroken}</p>
+              <p className="mb-3 text-sm leading-relaxed text-zinc-200">{weapon.whyBroken}</p>
 
               <div className="mb-4 flex flex-wrap gap-2">
                 {weapon.badges.map((badge) => (
@@ -91,7 +96,7 @@ export const UniqueWeaponsSection = ({
                   },
                   {
                     id: "setup",
-                    label: "Setup",
+                    label: "Configuración",
                     content: (
                       <div className="space-y-3">
                         <div>
@@ -111,7 +116,7 @@ export const UniqueWeaponsSection = ({
                           </ul>
                         </div>
                         <div>
-                          <p className="font-semibold text-zinc-100">Buffs</p>
+                          <p className="font-semibold text-zinc-100">Mejoras</p>
                           <ul className="mt-1 list-disc space-y-1 pl-4">
                             {weapon.buffs.map((item) => (
                               <li key={item}>{item}</li>

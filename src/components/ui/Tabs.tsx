@@ -16,7 +16,7 @@ export const Tabs = ({ tabs }: TabsProps) => {
 
   return (
     <div>
-      <div className="mb-3 flex flex-wrap gap-2" role="tablist" aria-label="Detalles">
+      <div className="mb-3 flex flex-wrap gap-2" role="tablist" aria-label="Detalles de la ficha">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -26,14 +26,14 @@ export const Tabs = ({ tabs }: TabsProps) => {
             className={`rounded-full border px-3 py-1 text-xs font-semibold transition ${
               activeTab === tab.id
                 ? "border-rune bg-rune/20 text-rune"
-                : "border-zinc-600 bg-zinc-800/40 text-zinc-200 hover:border-zinc-400"
+                : "border-zinc-600 bg-zinc-800/55 text-zinc-100 hover:border-zinc-400"
             }`}
           >
             {tab.label}
           </button>
         ))}
       </div>
-      <div role="tabpanel" className="rounded-xl border border-zinc-700/70 bg-zinc-900/45 p-4 text-sm text-zinc-200">
+      <div role="tabpanel" className="rounded-xl border border-zinc-700/80 bg-zinc-900/60 p-4 text-sm text-zinc-200">
         {active?.content}
       </div>
     </div>

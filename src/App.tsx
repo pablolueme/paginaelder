@@ -21,7 +21,8 @@ import { BackToTopButton } from "./components/layout/BackToTopButton";
 
 interface FavoriteViewItem {
   id: string;
-  title: string;
+  titleEs: string;
+  titleEn: string;
   subtitle: string;
   href: string;
 }
@@ -53,32 +54,39 @@ const App = () => {
     rankingBuilds.forEach((build) =>
       sourceMap.set(`build:${build.id}`, {
         id: `build:${build.id}`,
-        title: build.name,
-        subtitle: "Build / ranking meta PvE",
+        titleEs: build.nameEs,
+        titleEn: build.nameEn,
+        subtitle: "Configuración del ranking PvE",
         href: "#ranking"
       })
     );
+
     uniqueWeapons.forEach((weapon) =>
       sourceMap.set(`unique:${weapon.id}`, {
         id: `unique:${weapon.id}`,
-        title: weapon.name,
-        subtitle: "Arma única o somber",
+        titleEs: weapon.nameEs,
+        titleEn: weapon.nameEn,
+        subtitle: "Arma única",
         href: "#somber"
       })
     );
+
     infusableSetups.forEach((setup) =>
       sourceMap.set(`infusable:${setup.id}`, {
         id: `infusable:${setup.id}`,
-        title: `${setup.baseWeapon} + ${setup.bestAshes.join(" / ")}`,
-        subtitle: "Setup infusable",
+        titleEs: setup.nameEs,
+        titleEn: setup.nameEn,
+        subtitle: "Configuración infusable",
         href: "#infusables"
       })
     );
+
     topAshesOfWar.forEach((ash) =>
       sourceMap.set(`ash:${ash.id}`, {
         id: `ash:${ash.id}`,
-        title: ash.name,
-        subtitle: "Ash of War",
+        titleEs: ash.nameEs,
+        titleEn: ash.nameEn,
+        subtitle: "Ceniza de guerra",
         href: "#ashes"
       })
     );

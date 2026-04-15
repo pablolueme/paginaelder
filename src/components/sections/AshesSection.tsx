@@ -11,39 +11,46 @@ interface AshesSectionProps {
   onToggleFavorite: (id: string) => void;
 }
 
-const normalize = (value: string): string => value.toLowerCase();
+const normalize = (value: string): string =>
+  value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 export const AshesSection = ({ ashes, search, favorites, onToggleFavorite }: AshesSectionProps) => {
   const filtered = ashes.filter((ash) => {
     if (!search.trim()) {
       return true;
     }
-    return normalize(`${ash.name} ${ash.type} ${ash.bestWeapons.join(" ")} ${ash.location}`).includes(
-      normalize(search)
-    );
+
+    return normalize(
+      `${ash.nameEs} ${ash.nameEn} ${ash.typeEs} ${ash.typeEn} ${ash.bestWeapons
+        .map((weapon) => `${weapon.nameEs} ${weapon.nameEn}`)
+        .join(" ")} ${ash.location}`
+    ).includes(normalize(search));
   });
 
   return (
     <SectionShell
       id="ashes"
-      title="Top Ashes of War para PvE"
-      subtitle="Selección meta para bosses y limpieza con ventajas, desventajas y localización."
+      title="Cenizas de guerra"
+      subtitle="Selección meta para jefes y limpieza con ventajas, desventajas y localización."
     >
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {filtered.map((ash) => {
           const favoriteId = `ash:${ash.id}`;
           const isFavorite = favorites.includes(favoriteId);
+
           return (
             <Card key={ash.id}>
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="title-font text-xl text-zinc-100">{ash.name}</h3>
-                  <p className="text-sm text-zinc-300">{ash.type}</p>
+                  <h3 className="title-font text-2xl text-zinc-50">{ash.nameEs}</h3>
+                  <p className="text-xs text-zinc-400">{ash.nameEn}</p>
+                  <p className="mt-1 text-sm text-zinc-300">{ash.typeEs}</p>
+                  <p className="text-xs text-zinc-500">{ash.typeEn}</p>
                 </div>
                 <FavoriteToggle
                   active={isFavorite}
                   onToggle={() => onToggleFavorite(favoriteId)}
-                  label={isFavorite ? "Quitar favorita" : "Añadir favorita"}
+                  label={isFavorite ? "Quitar de favoritos" : "Añadir a favoritos"}
                 />
               </div>
 
@@ -54,7 +61,14 @@ export const AshesSection = ({ ashes, search, favorites, onToggleFavorite }: Ash
               <div className="space-y-3 text-sm text-zinc-200">
                 <div>
                   <p className="font-semibold text-zinc-100">Mejores armas</p>
-                  <p>{ash.bestWeapons.join(", ")}</p>
+                  <ul className="mt-1 space-y-1">
+                    {ash.bestWeapons.map((weapon) => (
+                      <li key={`${ash.id}-${weapon.nameEn}`}>
+                        <span className="font-medium text-zinc-100">{weapon.nameEs}</span>
+                        <span className="ml-2 text-xs text-zinc-400">{weapon.nameEn}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div>
                   <p className="font-semibold text-zinc-100">Ventajas</p>

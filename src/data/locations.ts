@@ -5,17 +5,20 @@ export const regionGuides: RegionGuide[] = [
     region: "Limgrave",
     items: [
       {
-        name: "Wild Strikes",
-        kind: "Ash of War",
+        nameEs: "Golpes salvajes",
+        nameEn: "Wild Strikes",
+        kind: "Ceniza de guerra",
         note: "Scarab en el camino desde Stormhill Shack hacia Castleward Tunnel."
       },
       {
-        name: "Impaling Thrust",
-        kind: "Ash of War",
+        nameEs: "Estocada perforante",
+        nameEn: "Impaling Thrust",
+        kind: "Ceniza de guerra",
         note: "Compra a Bernahl en Warmaster's Shack."
       },
       {
-        name: "Rusted Anchor",
+        nameEs: "Ancla oxidada",
+        nameEn: "Rusted Anchor",
         kind: "Arma",
         note: "Morne Tunnel, en Weeping Peninsula (zona sur de Limgrave)."
       }
@@ -25,19 +28,28 @@ export const regionGuides: RegionGuide[] = [
     region: "Liurnia",
     items: [
       {
-        name: "Nagakiba",
+        nameEs: "Nagakiba",
+        nameEn: "Nagakiba",
         kind: "Arma",
-        note: "Quest de Yura o derrota directa; ubicación final varía por progreso."
+        note: "Quest de Yura o derrota directa; ubicación final según progreso."
       },
       {
-        name: "Nightrider Glaive",
+        nameEs: "Alabarda del Jinete Nocturno",
+        nameEn: "Nightrider Glaive",
         kind: "Arma",
         note: "Drop de Night's Cavalry en Bellum Highway."
       },
       {
-        name: "Giant Hunt",
-        kind: "Ash of War",
-        note: "Drop de Night's Cavalry de Bellum Highway."
+        nameEs: "Caza de gigantes",
+        nameEn: "Giant Hunt",
+        kind: "Ceniza de guerra",
+        note: "Drop de Night's Cavalry en Bellum Highway."
+      },
+      {
+        nameEs: "Lanza de hielo",
+        nameEn: "Ice Spear",
+        kind: "Ceniza de guerra",
+        note: "Escarabajo lágrima al sudeste de Caria Manor."
       }
     ]
   },
@@ -45,24 +57,28 @@ export const regionGuides: RegionGuide[] = [
     region: "Caelid",
     items: [
       {
-        name: "Cragblade",
-        kind: "Ash of War",
+        nameEs: "Hoja pétrea",
+        nameEn: "Cragblade",
+        kind: "Ceniza de guerra",
         note: "Scarab al oeste de Impassable Greatbridge."
       },
       {
-        name: "Double Slash",
-        kind: "Ash of War",
+        nameEs: "Doble tajo",
+        nameEn: "Double Slash",
+        kind: "Ceniza de guerra",
         note: "Scarab en Sellia, Town of Sorcery."
       },
       {
-        name: "Flame, Grant Me Strength",
-        kind: "Buff",
-        note: "Fort Gael, detrás de dos lanzallamas."
-      },
-      {
-        name: "Greatsword",
+        nameEs: "Espadón",
+        nameEn: "Greatsword",
         kind: "Arma",
         note: "En un carro custodiado por perros gigantes."
+      },
+      {
+        nameEs: "Garra de león",
+        nameEn: "Lion's Claw",
+        kind: "Ceniza de guerra",
+        note: "Drop del león guardián en Fort Gael."
       }
     ]
   },
@@ -70,18 +86,21 @@ export const regionGuides: RegionGuide[] = [
     region: "Altus",
     items: [
       {
-        name: "Great Stars",
+        nameEs: "Gran estrella",
+        nameEn: "Great Stars",
         kind: "Arma",
         note: "Carro entre Road of Iniquity Side Path y Writheblood Ruins."
       },
       {
-        name: "Giant-Crusher",
+        nameEs: "Aplastagigantes",
+        nameEn: "Giant-Crusher",
         kind: "Arma",
         note: "Cofre de carruaje al sur de Outer Wall Phantom Tree."
       },
       {
-        name: "Golden Vow",
-        kind: "Buff",
+        nameEs: "Voto dorado",
+        nameEn: "Golden Vow",
+        kind: "Mejora",
         note: "Corpse-Stench Shack (Mt. Gelmir/Altus)."
       }
     ]
@@ -90,19 +109,22 @@ export const regionGuides: RegionGuide[] = [
     region: "Leyndell",
     items: [
       {
-        name: "Star Fist",
+        nameEs: "Puño estelar",
+        nameEn: "Star Fist",
         kind: "Arma",
         note: "Cerca del coliseo en West Capital Rampart."
       },
       {
-        name: "Bolt of Gransax",
+        nameEs: "Lanza sagrada de Mohgwyn",
+        nameEn: "Mohgwyn's Sacred Spear",
         kind: "Arma",
-        note: "Lanza legendaria opcional para builds DEX/FTH."
+        note: "Recuerdo de Mohg en Roundtable Hold."
       },
       {
-        name: "Lord of Blood's Exultation",
+        nameEs: "Exultación del Señor de la Sangre",
+        nameEn: "Lord of Blood's Exultation",
         kind: "Talismán",
-        note: "Leyndell Catacombs, útil para builds bleed."
+        note: "Leyndell Catacombs; clave para setups de hemorragia."
       }
     ]
   },
@@ -110,14 +132,16 @@ export const regionGuides: RegionGuide[] = [
     region: "Mountaintops",
     items: [
       {
-        name: "Ancient Dragons' Lightning Strike",
+        nameEs: "Golpe de relámpago de dragones antiguos",
+        nameEn: "Ancient Dragons' Lightning Strike",
         kind: "Hechizo",
         note: "Requiere el libro de oración avanzado y progreso de late game."
       },
       {
-        name: "Ritual Sword Talisman",
+        nameEs: "Talismán de espada ritual",
+        nameEn: "Ritual Sword Talisman",
         kind: "Talismán",
-        note: "Lux Ruins (Altus) es más temprano, pero se usa mucho aquí con builds burst."
+        note: "Se obtiene antes en Altus, pero brilla en setups de burst de late game."
       }
     ]
   },
@@ -125,12 +149,14 @@ export const regionGuides: RegionGuide[] = [
     region: "Farum Azula",
     items: [
       {
-        name: "Shard of Alexander",
+        nameEs: "Fragmento de Alexander",
+        nameEn: "Shard of Alexander",
         kind: "Talismán",
         note: "Final de la quest de Alexander; clave para habilidades de arma."
       },
       {
-        name: "Dragoncrest Greatshield Talisman",
+        nameEs: "Talismán granescudo crestadragón",
+        nameEn: "Dragoncrest Greatshield Talisman",
         kind: "Talismán",
         note: "Uno de los mejores para supervivencia en PvE."
       }

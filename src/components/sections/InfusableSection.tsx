@@ -12,7 +12,11 @@ interface InfusableSectionProps {
   onToggleFavorite: (id: string) => void;
 }
 
-const normalize = (value: string): string => value.toLowerCase();
+const normalize = (value: string): string =>
+  value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+const formatAshes = (setups: InfusableSetup["bestAshes"], language: "es" | "en"): string =>
+  setups.map((ash) => (language === "es" ? ash.nameEs : ash.nameEn)).join(" / ");
 
 export const InfusableSection = ({
   setups,
@@ -24,34 +28,41 @@ export const InfusableSection = ({
     if (!search.trim()) {
       return true;
     }
-    return normalize(`${setup.baseWeapon} ${setup.bestAshes.join(" ")} ${setup.whyBroken}`).includes(
-      normalize(search)
-    );
+
+    return normalize(
+      `${setup.nameEs} ${setup.nameEn} ${setup.baseWeapon.nameEs} ${setup.baseWeapon.nameEn} ${setup.bestAshes
+        .map((ash) => `${ash.nameEs} ${ash.nameEn}`)
+        .join(" ")} ${setup.whyBroken}`
+    ).includes(normalize(search));
   });
 
   return (
     <SectionShell
       id="infusables"
-      title="Armas Normales + Ashes of War"
-      subtitle="Setups infusables fuertes del juego base con afinidad y estilo de juego recomendado."
+      title="Armas infusables"
+      subtitle="Configuraciones fuertes con afinidad recomendada y estilo de juego claro para el juego base."
     >
       <div className="grid gap-4 md:grid-cols-2">
         {filtered.map((setup) => {
           const favoriteId = `infusable:${setup.id}`;
           const isFavorite = favorites.includes(favoriteId);
+
           return (
             <Card key={setup.id}>
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="title-font text-xl text-zinc-100">{setup.baseWeapon}</h3>
-                  <p className="text-sm text-zinc-300">
-                    Mejor AoW: <span className="font-semibold text-zinc-100">{setup.bestAshes.join(" / ")}</span>
+                  <h3 className="title-font text-2xl text-zinc-50">{setup.nameEs}</h3>
+                  <p className="text-xs text-zinc-400">{setup.nameEn}</p>
+                  <p className="mt-1 text-sm text-zinc-300">
+                    Mejor ceniza de guerra:{" "}
+                    <span className="font-semibold text-zinc-100">{formatAshes(setup.bestAshes, "es")}</span>
                   </p>
+                  <p className="text-xs text-zinc-500">{formatAshes(setup.bestAshes, "en")}</p>
                 </div>
                 <FavoriteToggle
                   active={isFavorite}
                   onToggle={() => onToggleFavorite(favoriteId)}
-                  label={isFavorite ? "Quitar favorita" : "Añadir favorita"}
+                  label={isFavorite ? "Quitar de favoritos" : "Añadir a favoritos"}
                 />
               </div>
 
@@ -62,17 +73,18 @@ export const InfusableSection = ({
                 <SimpleBadge label={`Afinidad: ${setup.recommendedAffinity}`} />
               </div>
 
-              <p className="mb-4 text-sm text-zinc-200">{setup.whyBroken}</p>
+              <p className="mb-4 text-sm leading-relaxed text-zinc-200">{setup.whyBroken}</p>
 
               <Tabs
                 tabs={[
                   {
                     id: "setup",
-                    label: "Build",
+                    label: "Configuración",
                     content: (
                       <div className="space-y-2">
                         <p>
-                          <span className="font-semibold text-zinc-100">Build recomendada:</span> {setup.recommendedBuild}
+                          <span className="font-semibold text-zinc-100">Configuración recomendada:</span>{" "}
+                          {setup.recommendedBuild}
                         </p>
                         <p>
                           <span className="font-semibold text-zinc-100">Estilo de juego:</span> {setup.playstyle}
@@ -90,7 +102,7 @@ export const InfusableSection = ({
                           {setup.weaponLocation}
                         </p>
                         <p>
-                          <span className="font-semibold text-zinc-100">Dónde conseguir el AoW:</span>{" "}
+                          <span className="font-semibold text-zinc-100">Dónde conseguir la ceniza:</span>{" "}
                           {setup.ashLocation}
                         </p>
                       </div>

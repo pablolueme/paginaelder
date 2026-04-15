@@ -8,7 +8,9 @@ export const buildMatchesSearch = (build: BuildEntry, search: string): boolean =
   }
 
   const content = normalize(
-    `${build.name} ${build.type} ${build.summary} ${build.focus.join(" ")} ${build.attributes.join(" ")}`
+    `${build.nameEs} ${build.nameEn} ${build.typeEs} ${build.typeEn} ${build.summary} ${build.focus.join(
+      " "
+    )} ${build.attributes.join(" ")}`
   );
   return content.includes(normalize(search));
 };

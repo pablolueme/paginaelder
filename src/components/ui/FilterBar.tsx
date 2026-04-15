@@ -10,13 +10,13 @@ interface FilterBarProps {
 export const FilterBar = ({ activeFilters, onToggle, onClear }: FilterBarProps) => (
   <div className="premium-card p-4">
     <div className="mb-3 flex items-center justify-between gap-3">
-      <p className="text-xs uppercase tracking-[0.18em] text-zinc-400">Filtros</p>
+      <p className="text-xs uppercase tracking-[0.18em] text-zinc-300">Filtros</p>
       <button
         type="button"
         onClick={onClear}
-        className="rounded-full border border-zinc-600 px-3 py-1 text-xs text-zinc-200 transition hover:border-rune/60 hover:text-rune"
+        className="rounded-full border border-zinc-600 px-3 py-1 text-xs font-semibold text-zinc-100 transition hover:border-rune/60 hover:text-rune"
       >
-        Limpiar
+        Limpiar filtros
       </button>
     </div>
 
@@ -31,7 +31,7 @@ export const FilterBar = ({ activeFilters, onToggle, onClear }: FilterBarProps) 
             className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
               active
                 ? "border-rune bg-rune/20 text-rune"
-                : "border-zinc-600 bg-zinc-800/40 text-zinc-200 hover:border-zinc-400"
+                : "border-zinc-600 bg-zinc-800/55 text-zinc-100 hover:border-zinc-400"
             }`}
           >
             {filter.label}
