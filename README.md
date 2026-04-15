@@ -1,40 +1,46 @@
-# Elden Ring Base Game Meta PvE Guide (Frontend Only)
+﻿# Guía Meta PvE de Elden Ring Base (Frontend Only)
 
-Guía visual premium en **React + Vite + TypeScript + Tailwind CSS** centrada en **Elden Ring base game (sin DLC)**:
+Proyecto en **React + Vite + TypeScript + Tailwind CSS** centrado en **Elden Ring base game sin DLC**.
 
-- Ranking general top 12
-- Armas únicas/somber
-- Armas infusables + Ashes of War
-- Ashes of War top PvE
-- Comparador ordenable de builds
-- Guía de obtención por regiones
-- Favoritas en estado local (sin backend)
+## Qué incluye
+
+- Portada renovada con metodología y highlights meta.
+- Ranking general ampliado a **20 entradas potentes**.
+- Sección de **armas únicas** (somber) en español con nombre inglés secundario.
+- Sección de **armas infusables + cenizas recomendadas**.
+- Sección de **cenizas de guerra top** con ventajas, desventajas y localización.
+- **Búsqueda global** por español/inglés/tags/etapa/tipo.
+- **Filtros combinables** (early, midgame, late, endgame, toda la run, atributos y roles).
+- **Comparador visual multibuild**.
+- **Favoritos con localStorage**.
+- Sección separada de **Builds de jugadores** con placeholder inicial.
+- Guía por regiones: Necrolimbo, Liurnia, Caelid, Meseta Altus, Leyndell, Cimas de los Gigantes, Farum Azula en ruinas, Palacio de Mohgwyn.
 
 ## Requisitos
 
 - Node.js 18+ (recomendado 20+)
 - npm 9+
 
-## Arranque local
+## Desarrollo local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build de producción:
+## Build de producción
 
 ```bash
 npm run build
 ```
 
-Preview local del build:
+## Preview local del build
 
 ```bash
 npm run preview
 ```
 
-## Estructura
+## Estructura principal
 
 ```text
 src/
@@ -43,43 +49,27 @@ src/
     sections/
     ui/
   data/
-    builds.ts
-    weapons.ts
     ashes.ts
+    builds.ts
     locations.ts
+    meta.ts
+    playerBuilds.ts
+    weapons.ts
   hooks/
   types/
   utils/
 ```
 
-## Despliegue gratis
+## GitHub Pages
 
-### Netlify
+El proyecto mantiene despliegue automático desde `main` con `.github/workflows/deploy.yml`.
 
-1. Conecta el repositorio.
-2. Build command: `npm run build`
-3. Publish directory: `dist`
+- En GitHub: `Settings > Pages > Source: GitHub Actions`.
+- La web pública queda en:
+  - `https://pablolueme.github.io/paginaelder/`
 
-### Vercel
-
-1. Importa el proyecto.
-2. Framework: `Vite` (auto-detect).
-3. Build command: `npm run build`
-4. Output directory: `dist`
-
-### GitHub Pages
-
-1. Ya incluye workflow automatico en `.github/workflows/deploy.yml`.
-2. Sube el repo a GitHub y haz push a `main`.
-3. En GitHub: `Settings > Pages > Build and deployment > Source: GitHub Actions`.
-4. Cada push a `main` construye y publica `dist` automaticamente.
-
-### Cloudflare Pages
-
-1. Conecta el repositorio.
-2. Build command: `npm run build`
-3. Build output directory: `dist`
+`vite.config.ts` conserva base dinámica para repositorio de proyecto y genera `/paginaelder/` en GitHub Actions.
 
 ## Nota
 
-Proyecto totalmente **frontend only**: no backend, no auth, no base de datos.
+Proyecto **frontend only**: sin backend, sin auth y sin base de datos.

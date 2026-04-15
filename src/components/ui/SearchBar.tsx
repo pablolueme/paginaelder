@@ -1,16 +1,18 @@
-interface SearchBarProps {
+﻿interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
+  placeholder: string;
+  ariaLabel: string;
 }
 
-export const SearchBar = ({ value, onChange }: SearchBarProps) => (
+export const SearchBar = ({ value, onChange, placeholder, ariaLabel }: SearchBarProps) => (
   <label className="relative block w-full">
-    <span className="sr-only">Buscar configuraciones, armas o cenizas de guerra en español o inglés</span>
+    <span className="sr-only">{ariaLabel}</span>
     <input
       type="search"
       value={value}
       onChange={(event) => onChange(event.target.value)}
-      placeholder="Buscar por nombre en español o inglés..."
+      placeholder={placeholder}
       className="w-full rounded-2xl border border-zinc-500 bg-zinc-900/80 py-3 pl-10 pr-4 text-sm font-medium text-zinc-100 placeholder:text-zinc-400 focus:border-rune focus:outline-none focus:ring-2 focus:ring-rune/40"
     />
     <svg

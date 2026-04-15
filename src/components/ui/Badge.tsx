@@ -1,27 +1,35 @@
-import type { RoleBadge, Tier } from "../../types";
+﻿import { badgeLabelMap, stageLabelMap } from "../../data/meta";
+import type { BadgeKey, StageKey, Tier } from "../../types";
 
-const roleStyles: Record<RoleBadge, string> = {
-  Matabosses: "border-rose-300/70 bg-rose-500/20 text-rose-100",
-  "Monstruo de área": "border-sky-300/70 bg-sky-500/18 text-sky-100",
-  Rompepostura: "border-amber-300/75 bg-amber-500/22 text-amber-50",
-  Hemorragia: "border-red-300/70 bg-red-600/22 text-red-100",
-  "Fácil de usar": "border-emerald-300/70 bg-emerald-500/18 text-emerald-100",
-  "Muy dominante": "border-rune/80 bg-rune/24 text-amber-50"
+const badgeStyles: Record<BadgeKey, string> = {
+  bossKiller: "border-rose-300/70 bg-rose-500/20 text-rose-100",
+  aoeMonster: "border-sky-300/70 bg-sky-500/20 text-sky-100",
+  stanceBreaker: "border-amber-300/75 bg-amber-500/20 text-amber-100",
+  bleed: "border-red-300/70 bg-red-600/20 text-red-100",
+  beginnerFriendly: "border-emerald-300/70 bg-emerald-500/20 text-emerald-100",
+  hyperCarry: "border-rune/80 bg-rune/25 text-amber-100",
+  generalist: "border-zinc-400/70 bg-zinc-700/55 text-zinc-100",
+  bestOverall: "border-rune/80 bg-rune/25 text-amber-100",
+  bestForBosses: "border-rose-300/70 bg-rose-500/20 text-rose-100",
+  bestForArea: "border-sky-300/70 bg-sky-500/20 text-sky-100",
+  bestInfusible: "border-cyan-300/70 bg-cyan-500/20 text-cyan-100",
+  topAshOfWar: "border-violet-300/70 bg-violet-500/20 text-violet-100",
+  playerBuild: "border-frost/70 bg-frost/25 text-blue-100"
 };
 
 const tierStyles: Record<Tier, string> = {
-  "S+": "border-rune/80 bg-rune/24 text-amber-100",
-  S: "border-cyan-300/60 bg-cyan-500/15 text-cyan-100",
+  "S+": "border-rune/80 bg-rune/25 text-amber-100",
+  S: "border-cyan-300/70 bg-cyan-500/20 text-cyan-100",
   A: "border-zinc-500/80 bg-zinc-700/55 text-zinc-100"
 };
 
-interface RoleBadgePillProps {
-  badge: RoleBadge;
+interface BadgePillProps {
+  badge: BadgeKey;
 }
 
-export const RoleBadgePill = ({ badge }: RoleBadgePillProps) => (
-  <span className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold ${roleStyles[badge]}`}>
-    {badge}
+export const BadgePill = ({ badge }: BadgePillProps) => (
+  <span className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold ${badgeStyles[badge]}`}>
+    {badgeLabelMap[badge]}
   </span>
 );
 
@@ -31,7 +39,17 @@ interface TierBadgeProps {
 
 export const TierBadge = ({ tier }: TierBadgeProps) => (
   <span className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-bold ${tierStyles[tier]}`}>
-    Nivel {tier}
+    Tier {tier}
+  </span>
+);
+
+interface StageBadgeProps {
+  stage: StageKey;
+}
+
+export const StageBadge = ({ stage }: StageBadgeProps) => (
+  <span className="inline-flex items-center rounded-full border border-zinc-600 bg-zinc-800/65 px-2.5 py-1 text-xs font-medium text-zinc-100">
+    {stageLabelMap[stage]}
   </span>
 );
 
@@ -40,7 +58,7 @@ interface SimpleBadgeProps {
 }
 
 export const SimpleBadge = ({ label }: SimpleBadgeProps) => (
-  <span className="inline-flex items-center rounded-full border border-zinc-500 bg-zinc-800/70 px-2.5 py-1 text-xs font-medium text-zinc-100">
+  <span className="inline-flex items-center rounded-full border border-zinc-600 bg-zinc-800/65 px-2.5 py-1 text-xs font-medium text-zinc-100">
     {label}
   </span>
 );

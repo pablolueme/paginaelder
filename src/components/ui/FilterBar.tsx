@@ -1,27 +1,29 @@
-import { filterOptions } from "../../data/builds";
-import type { FilterKey } from "../../types";
+﻿import type { FilterOption, FilterKey } from "../../types";
 
 interface FilterBarProps {
+  options: FilterOption[];
   activeFilters: FilterKey[];
   onToggle: (filter: FilterKey) => void;
   onClear: () => void;
+  title: string;
+  clearLabel: string;
 }
 
-export const FilterBar = ({ activeFilters, onToggle, onClear }: FilterBarProps) => (
+export const FilterBar = ({ options, activeFilters, onToggle, onClear, title, clearLabel }: FilterBarProps) => (
   <div className="premium-card p-4">
     <div className="mb-3 flex items-center justify-between gap-3">
-      <p className="text-xs uppercase tracking-[0.18em] text-zinc-300">Filtros</p>
+      <p className="text-xs uppercase tracking-[0.18em] text-zinc-300">{title}</p>
       <button
         type="button"
         onClick={onClear}
         className="rounded-full border border-zinc-600 px-3 py-1 text-xs font-semibold text-zinc-100 transition hover:border-rune/60 hover:text-rune"
       >
-        Limpiar filtros
+        {clearLabel}
       </button>
     </div>
 
     <div className="flex flex-wrap gap-2">
-      {filterOptions.map((filter) => {
+      {options.map((filter) => {
         const active = activeFilters.includes(filter.key);
         return (
           <button

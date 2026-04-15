@@ -1,17 +1,19 @@
-import type { BuildEntry } from "../../types";
+﻿import { sectionText } from "../../data/meta";
+import type { RankingBuild } from "../../types";
 import { SectionShell } from "../layout/SectionShell";
 import { CompareTable } from "../ui/CompareTable";
 
 interface CompareSectionProps {
-  builds: BuildEntry[];
-  onOpenBuild: (build: BuildEntry) => void;
+  builds: RankingBuild[];
+  onOpenBuild: (build: RankingBuild) => void;
 }
 
 export const CompareSection = ({ builds, onOpenBuild }: CompareSectionProps) => (
   <SectionShell
     id="comparador"
-    title="Comparador"
-    subtitle="Ordena la tabla por cada métrica para decidir qué configuración rinde mejor según tu objetivo."
+    eyebrow={sectionText.comparador.eyebrow}
+    title={sectionText.comparador.title}
+    subtitle={sectionText.comparador.subtitle}
   >
     <CompareTable builds={builds} onSelectBuild={onOpenBuild} />
   </SectionShell>

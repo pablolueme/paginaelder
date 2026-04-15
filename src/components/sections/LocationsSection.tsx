@@ -1,3 +1,4 @@
+﻿import { sectionText } from "../../data/meta";
 import type { RegionGuide } from "../../types";
 import { SectionShell } from "../layout/SectionShell";
 import { Card } from "../ui/Card";
@@ -16,9 +17,10 @@ const kindStyle: Record<string, string> = {
 
 export const LocationsSection = ({ regions }: LocationsSectionProps) => (
   <SectionShell
-    id="obtencion"
-    title="Localizaciones"
-    subtitle="Ruta rápida con armas, cenizas de guerra, talismanes y mejoras clave para avanzar sin perder tiempo."
+    id="localizaciones"
+    eyebrow={sectionText.localizaciones.eyebrow}
+    title={sectionText.localizaciones.title}
+    subtitle={sectionText.localizaciones.subtitle}
   >
     <div className="relative space-y-4 pl-5 before:absolute before:left-1 before:top-1 before:h-[99%] before:w-px before:bg-zinc-700">
       {regions.map((region) => (
@@ -30,10 +32,7 @@ export const LocationsSection = ({ regions }: LocationsSectionProps) => (
           <h3 className="title-font text-xl text-zinc-50">{region.region}</h3>
           <div className="mt-3 space-y-3">
             {region.items.map((item) => (
-              <div
-                key={`${region.region}-${item.nameEn}`}
-                className="rounded-xl border border-zinc-700/70 bg-zinc-900/60 p-3"
-              >
+              <div key={`${region.region}-${item.nameEn}`} className="rounded-xl border border-zinc-700/70 bg-zinc-900/60 p-3">
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="font-semibold text-zinc-100">{item.nameEs}</p>
                   <p className="text-xs text-zinc-400">{item.nameEn}</p>

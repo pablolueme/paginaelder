@@ -1,13 +1,14 @@
-import type { BuildEntry, BuildAttribute, FilterKey } from "../../types";
-import { RoleBadgePill, SimpleBadge, TierBadge } from "../ui/Badge";
+﻿import { filterOptions, sectionText, uiText } from "../../data/meta";
+import type { FilterKey, RankingBuild } from "../../types";
+import { SectionShell } from "../layout/SectionShell";
+import { BadgePill, SimpleBadge, StageBadge, TierBadge } from "../ui/Badge";
 import { Card } from "../ui/Card";
 import { FavoriteToggle } from "../ui/FavoriteToggle";
 import { FilterBar } from "../ui/FilterBar";
 import { SearchBar } from "../ui/SearchBar";
-import { SectionShell } from "../layout/SectionShell";
 
 interface RankingSectionProps {
-  builds: BuildEntry[];
+  builds: RankingBuild[];
   search: string;
   onSearchChange: (value: string) => void;
   activeFilters: FilterKey[];
@@ -15,15 +16,8 @@ interface RankingSectionProps {
   onClearFilters: () => void;
   favorites: string[];
   onToggleFavorite: (id: string) => void;
-  onOpenBuild: (build: BuildEntry) => void;
+  onOpenBuild: (build: RankingBuild) => void;
 }
-
-const attributeLabel: Record<BuildAttribute, string> = {
-  strength: "Fuerza",
-  dex: "Destreza",
-  faith: "Fe",
-  arcane: "Arcano"
-};
 
 export const RankingSection = ({
   builds,
@@ -38,16 +32,29 @@ export const RankingSection = ({
 }: RankingSectionProps) => (
   <SectionShell
     id="ranking"
-    title="Ranking (Top 12)"
-    subtitle="Ordenado por rendimiento real en PvE del juego base: consistencia, daño, utilidad y facilidad."
+    eyebrow={sectionText.ranking.eyebrow}
+    title={sectionText.ranking.title}
+    subtitle={sectionText.ranking.subtitle}
   >
     <div className="mb-5 grid gap-3 lg:grid-cols-[2fr,1fr]">
-      <SearchBar value={search} onChange={onSearchChange} />
-      <FilterBar activeFilters={activeFilters} onToggle={onToggleFilter} onClear={onClearFilters} />
+      <SearchBar
+        value={search}
+        onChange={onSearchChange}
+        placeholder={uiText.globalSearchPlaceholder}
+        ariaLabel={uiText.globalSearchAria}
+      />
+      <FilterBar
+        options={filterOptions}
+        activeFilters={activeFilters}
+        onToggle={onToggleFilter}
+        onClear={onClearFilters}
+        title={uiText.filtersTitle}
+        clearLabel={uiText.clearFilters}
+      />
     </div>
 
     <p className="mb-5 text-sm text-zinc-200">
-      Resultados encontrados: <span className="font-semibold text-rune">{builds.length}</span>
+      {uiText.results}: <span className="font-semibold text-rune">{builds.length}</span>
     </p>
 
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -65,44 +72,42 @@ export const RankingSection = ({
                 <div>
                   <h3 className="title-font text-xl text-zinc-50">{build.nameEs}</h3>
                   <p className="text-xs text-zinc-400">{build.nameEn}</p>
-                  <p className="mt-1 text-sm text-zinc-300">{build.typeEs}</p>
-                  <p className="text-xs text-zinc-500">{build.typeEn}</p>
+                  <p className="mt-1 text-sm text-zinc-300">{build.weaponType}</p>
                 </div>
               </div>
               <FavoriteToggle
                 active={isFavorite}
                 onToggle={() => onToggleFavorite(favoriteId)}
-                label={isFavorite ? "Quitar de favoritos" : "Añadir a favoritos"}
+                label={isFavorite ? uiText.removeFavorite : uiText.addFavorite}
               />
             </div>
 
             <div className="mb-3 flex flex-wrap gap-2">
               <TierBadge tier={build.tier} />
-              <SimpleBadge label={`Dificultad: ${build.difficulty}`} />
+              <SimpleBadge label={`${uiText.difficulty}: ${build.difficulty}`} />
+              <SimpleBadge label={`${uiText.scaling}: ${build.scaling}`} />
             </div>
 
-            <p className="mb-4 text-sm leading-relaxed text-zinc-200">{build.summary}</p>
+            <p className="mb-4 text-sm leading-relaxed text-zinc-200">{build.shortDescription}</p>
 
-            <div className="mb-4 flex flex-wrap gap-2">
+            <div className="mb-3 flex flex-wrap gap-2">
               {build.badges.map((badge) => (
-                <RoleBadgePill key={badge} badge={badge} />
+                <BadgePill key={badge} badge={badge} />
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-2 text-xs text-zinc-300">
-              {build.attributes.map((attribute) => (
-                <SimpleBadge key={attribute} label={attributeLabel[attribute]} />
+            <div className="mb-3 flex flex-wrap gap-2">
+              {build.stage.map((stage) => (
+                <StageBadge key={stage} stage={stage} />
               ))}
-              {build.isInfusable ? <SimpleBadge label="Arma infusable" /> : null}
-              {build.isUniqueSomber ? <SimpleBadge label="Arma única" /> : null}
             </div>
 
             <button
               type="button"
               onClick={() => onOpenBuild(build)}
-              className="mt-4 rounded-xl border border-rune/70 bg-rune/15 px-4 py-2 text-sm font-semibold text-rune transition hover:bg-rune/25"
+              className="mt-1 rounded-xl border border-rune/70 bg-rune/15 px-4 py-2 text-sm font-semibold text-rune transition hover:bg-rune/25"
             >
-              Ver configuración detallada
+              {uiText.openDetail}
             </button>
           </Card>
         );

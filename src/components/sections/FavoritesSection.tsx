@@ -1,4 +1,5 @@
-import type { PropsWithChildren } from "react";
+﻿import type { PropsWithChildren } from "react";
+import { sectionText, uiText } from "../../data/meta";
 import { SectionShell } from "../layout/SectionShell";
 import { Card } from "../ui/Card";
 
@@ -23,13 +24,12 @@ const EmptyState = ({ children }: PropsWithChildren) => (
 export const FavoritesSection = ({ items }: FavoritesSectionProps) => (
   <SectionShell
     id="favoritos"
-    title="Favoritos"
-    subtitle="Sección local sin backend. Tus favoritos quedan guardados en este navegador."
+    eyebrow={sectionText.favoritos.eyebrow}
+    title={sectionText.favoritos.title}
+    subtitle={sectionText.favoritos.subtitle}
   >
     {items.length === 0 ? (
-      <EmptyState>
-        Todavía no añadiste favoritos. Usa la estrella en cualquier ficha para crear tu lista personal.
-      </EmptyState>
+      <EmptyState>{uiText.favoritesEmpty}</EmptyState>
     ) : (
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {items.map((item) => (
@@ -41,7 +41,7 @@ export const FavoritesSection = ({ items }: FavoritesSectionProps) => (
               href={item.href}
               className="mt-4 inline-flex rounded-lg border border-rune/70 bg-rune/20 px-3 py-1.5 text-xs font-semibold text-rune transition hover:bg-rune/30"
             >
-              Ir a sección
+              {uiText.goToSection}
             </a>
           </Card>
         ))}

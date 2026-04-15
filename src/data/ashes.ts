@@ -1,168 +1,242 @@
-import type { AshOfWarEntry } from "../types";
+﻿import type { AshOfWarEntry } from "../types";
+
+type AshSeed = Pick<
+  AshOfWarEntry,
+  "id" | "slug" | "nameEs" | "nameEn" | "shortDescription" | "longDescription" | "bestWeapons" | "excelsAt" | "location"
+> &
+  Partial<AshOfWarEntry>;
+
+const makeAsh = (seed: AshSeed): AshOfWarEntry => ({
+  tier: "S",
+  category: "cenizaDeGuerra",
+  stage: ["midgame", "late", "endgame"],
+  tags: ["bosses", "infusable"],
+  bestFor: ["PvE general"],
+  weakerAgainst: ["No aplica en todas las armas"],
+  recommendation: "Úsala en armas compatibles con tu atributo principal.",
+  howToGet: seed.location,
+  stats: ["Depende de la build"],
+  talismans: ["Fragmento de Alexander"],
+  buffs: ["Voto dorado"],
+  affinity: "Variable",
+  bestAshes: [seed.nameEs],
+  region: ["Necrolimbo"],
+  weaponType: "Ceniza de guerra",
+  playstyle: "Depende del arma equipada",
+  scaling: "Variable",
+  difficulty: "Media",
+  pros: ["Mejora directa de daño o utilidad"],
+  cons: ["No todas sirven para todos los enemigos"],
+  badges: ["topAshOfWar"],
+  ...seed
+});
 
 export const topAshesOfWar: AshOfWarEntry[] = [
-  {
+  makeAsh({
     id: "cragblade",
+    slug: "hoja-petrea",
     nameEs: "Hoja pétrea",
     nameEn: "Cragblade",
-    typeEs: "Mejora ofensiva física",
-    typeEn: "Physical offensive buff",
+    shortDescription: "Buff ofensivo top para daño físico y postura.",
+    longDescription: "Potencia daño físico y stagger. Perfecta para puños, colosales y armas STR.",
+    tags: ["bosses", "stanceBreak", "strength", "infusable"],
+    bestFor: ["Bosses", "Romper postura"],
+    weakerAgainst: ["Builds puramente mágicas"],
     bestWeapons: [
       { nameEs: "Puño estelar", nameEn: "Star Fist" },
       { nameEs: "Aplastagigantes", nameEn: "Giant-Crusher" },
-      { nameEs: "Espadón", nameEn: "Greatsword" },
-      { nameEs: "Ancla oxidada", nameEn: "Rusted Anchor" }
+      { nameEs: "Espadón", nameEn: "Greatsword" }
     ],
-    excelsAt: "Jefes",
-    advantages: [
-      "Aumenta daño físico y daño de postura",
-      "Sinergia excelente con builds de Fuerza",
-      "Ejecución muy simple"
-    ],
-    disadvantages: ["No aporta movilidad", "Necesita refrescar el buff con frecuencia"],
-    location: "Scarab al oeste de Impassable Greatbridge (Caelid)."
-  },
-  {
+    excelsAt: "bosses",
+    location: "Escarabajo al oeste de Impassable Greatbridge en Caelid.",
+    region: ["Caelid"]
+  }),
+  makeAsh({
     id: "wild-strikes",
+    slug: "golpes-salvajes",
     nameEs: "Golpes salvajes",
     nameEn: "Wild Strikes",
-    typeEs: "Presión continua",
-    typeEn: "Sustained pressure",
+    shortDescription: "Presión continua muy fácil de ejecutar en PvE.",
+    longDescription: "Mantiene DPS constante y encaja genial en armas pesadas con sustain.",
+    tags: ["area", "strength", "beginner", "infusable"],
+    bestFor: ["Área", "PvE general"],
     bestWeapons: [
       { nameEs: "Gran estrella", nameEn: "Great Stars" },
-      { nameEs: "Gran maza", nameEn: "Large Club" },
-      { nameEs: "Martillo de batalla", nameEn: "Battle Hammer" }
+      { nameEs: "Ancla oxidada", nameEn: "Rusted Anchor" }
     ],
-    excelsAt: "Área",
-    advantages: [
-      "Mantiene presión constante en grupos",
-      "Muy permisiva con el timing",
-      "Excelente para jugadores nuevos"
-    ],
-    disadvantages: ["Te puede exponer si agotas stamina", "Menos burst puntual que Garra de león"],
-    location: "Scarab en el camino de Stormhill Shack hacia Castleward Tunnel."
-  },
-  {
+    excelsAt: "area",
+    location: "Escarabajo entre Stormhill Shack y Castleward Tunnel.",
+    region: ["Necrolimbo"]
+  }),
+  makeAsh({
     id: "unsheathe",
+    slug: "desenvainar",
     nameEs: "Desenvainar",
     nameEn: "Unsheathe",
-    typeEs: "Ráfaga técnica",
-    typeEn: "Technical burst",
+    shortDescription: "Castigo rápido de katanas con gran eficiencia.",
+    longDescription: "Ofrece daño instantáneo y buena postura en versiones pesadas de katana.",
+    tags: ["bosses", "dex", "infusable"],
+    bestFor: ["Bosses", "Castigo técnico"],
     bestWeapons: [
       { nameEs: "Nagakiba", nameEn: "Nagakiba" },
       { nameEs: "Uchigatana", nameEn: "Uchigatana" }
     ],
-    excelsAt: "Híbrido",
-    advantages: [
-      "Daño alto en ventana corta",
-      "Buena rotura de postura en variante pesada",
-      "Escala bien en builds de Destreza"
-    ],
-    disadvantages: ["Requiere spacing correcto", "Pierde valor si se abusa sin timing"],
-    location: "Disponible desde inicio para Samurai y transferible con Whetstone."
-  },
-  {
+    excelsAt: "hibrido",
+    location: "Ceniza base de katana; transferible en herrería.",
+    region: ["Necrolimbo"]
+  }),
+  makeAsh({
     id: "double-slash",
+    slug: "doble-tajo",
     nameEs: "Doble tajo",
     nameEn: "Double Slash",
-    typeEs: "Cadena rápida",
-    typeEn: "Fast chain",
+    shortDescription: "Cadena rápida ideal para aplicar hemorragia.",
+    longDescription: "Golpea en ráfaga y combina muy bien con katanas de sangrado.",
+    tags: ["bosses", "bleed", "dex", "arcane", "infusable"],
+    bestFor: ["Bosses", "Bleed"],
     bestWeapons: [
       { nameEs: "Nagakiba", nameEn: "Nagakiba" },
-      { nameEs: "Uchigatana", nameEn: "Uchigatana" },
-      { nameEs: "Doble hoja", nameEn: "Twinblade" }
+      { nameEs: "Uchigatana", nameEn: "Uchigatana" }
     ],
-    excelsAt: "Jefes",
-    advantages: [
-      "Gran aplicación de hemorragia con armas adecuadas",
-      "DPS sostenido alto",
-      "Muy buena sinergia con talismanes de multi-hit"
-    ],
-    disadvantages: ["Castiga errores por animación comprometida", "Menor stagger que opciones de Fuerza"],
-    location: "Scarab en Sellia, Town of Sorcery."
-  },
-  {
+    excelsAt: "bosses",
+    location: "Se obtiene en Sellia, Town of Sorcery.",
+    region: ["Caelid"]
+  }),
+  makeAsh({
     id: "lions-claw",
+    slug: "garra-de-leon",
     nameEs: "Garra de león",
     nameEn: "Lion's Claw",
-    typeEs: "Golpe pesado con hiperarmadura",
-    typeEn: "Heavy hyperarmor slam",
+    shortDescription: "Golpe pesado con hiperarmadura y postura enorme.",
+    longDescription: "Excelente en espadones y colosales para castigar jefes.",
+    tags: ["bosses", "stanceBreak", "strength", "infusable"],
+    bestFor: ["Bosses", "Rompepostura"],
     bestWeapons: [
       { nameEs: "Espadón", nameEn: "Greatsword" },
-      { nameEs: "Mandoble", nameEn: "Claymore" },
-      { nameEs: "Gran hacha", nameEn: "Great Axe" }
-    ],
-    excelsAt: "Jefes",
-    advantages: ["Daño de postura altísimo", "Hiperarmadura fiable para tradear", "Funciona en muchas armas de Fuerza"],
-    disadvantages: ["Animación evidente", "Consume bastante stamina"],
-    location: "Drop del león guardián en Fort Gael (Caelid)."
-  },
-  {
-    id: "impaling-thrust",
-    nameEs: "Estocada perforante",
-    nameEn: "Impaling Thrust",
-    typeEs: "Punción perforante",
-    typeEn: "Piercing thrust",
-    bestWeapons: [
-      { nameEs: "Mandoble", nameEn: "Claymore" },
-      { nameEs: "Lanza", nameEn: "Lance" },
-      { nameEs: "Gran estoque", nameEn: "Great Epee" }
-    ],
-    excelsAt: "Híbrido",
-    advantages: [
-      "Excelente para castigar escudos y defensas",
-      "Alcance sólido",
-      "Muy estable para PvE general"
-    ],
-    disadvantages: ["Menos explosiva en área", "No aplica estados por sí sola"],
-    location: "Vendida por Bernahl en Warmaster's Shack (Limgrave)."
-  },
-  {
-    id: "giant-hunt",
-    nameEs: "Caza de gigantes",
-    nameEn: "Giant Hunt",
-    typeEs: "Impulso vertical",
-    typeEn: "Vertical launcher thrust",
-    bestWeapons: [
-      { nameEs: "Alabarda del Jinete Nocturno", nameEn: "Nightrider Glaive" },
-      { nameEs: "Mandoble", nameEn: "Claymore" },
-      { nameEs: "Espadón", nameEn: "Greatsword" }
-    ],
-    excelsAt: "Jefes",
-    advantages: ["Gran castigo en vertical", "Muy buena en enemigos humanoides", "Escala bien en Fuerza"],
-    disadvantages: ["No limpia área tan rápido", "Necesita buen posicionamiento"],
-    location: "Drop de Night's Cavalry en Bellum Highway (Liurnia)."
-  },
-  {
-    id: "sword-dance",
-    nameEs: "Danza de espadas",
-    nameEn: "Sword Dance",
-    typeEs: "Cadena móvil",
-    typeEn: "Mobile combo chain",
-    bestWeapons: [
-      { nameEs: "Alabarda del Jinete Nocturno", nameEn: "Nightrider Glaive" },
-      { nameEs: "Nagakiba", nameEn: "Nagakiba" },
       { nameEs: "Mandoble", nameEn: "Claymore" }
     ],
-    excelsAt: "Híbrido",
-    advantages: ["Buena movilidad ofensiva", "DPS consistente", "Versátil en varias categorías de arma"],
-    disadvantages: ["Exige control de spacing", "Menor poise break que Garra de león"],
-    location: "Scarab al norte de Caelid Highway South."
-  },
-  {
-    id: "ice-spear",
-    nameEs: "Lanza de hielo",
-    nameEn: "Ice Spear",
-    typeEs: "Proyectil de escarcha",
-    typeEn: "Frost projectile",
+    excelsAt: "bosses",
+    location: "Drop del león guardián en Fort Gael.",
+    region: ["Caelid"]
+  }),
+  makeAsh({
+    id: "impaling-thrust",
+    slug: "estocada-perforante",
+    nameEs: "Estocada perforante",
+    nameEn: "Impaling Thrust",
+    shortDescription: "Punción segura y constante para castigo lineal.",
+    longDescription: "Muy fiable contra objetivos con defensa frontal.",
+    tags: ["bosses", "dex", "infusable"],
+    bestFor: ["Bosses", "Castigo puntual"],
+    bestWeapons: [
+      { nameEs: "Mandoble", nameEn: "Claymore" },
+      { nameEs: "Gran estoque", nameEn: "Great Epee" }
+    ],
+    excelsAt: "hibrido",
+    location: "La vende Bernahl en Warmaster's Shack.",
+    region: ["Necrolimbo"]
+  }),
+  makeAsh({
+    id: "giant-hunt",
+    slug: "caza-de-gigantes",
+    nameEs: "Caza de gigantes",
+    nameEn: "Giant Hunt",
+    shortDescription: "Castigo vertical muy fuerte en humanoides y bosses.",
+    longDescription: "Gran daño de postura y excelente alcance vertical.",
+    tags: ["bosses", "stanceBreak", "strength", "infusable"],
+    bestFor: ["Bosses", "Control de espacio"],
+    bestWeapons: [
+      { nameEs: "Alabarda del Jinete Nocturno", nameEn: "Nightrider Glaive" },
+      { nameEs: "Mandoble", nameEn: "Claymore" }
+    ],
+    excelsAt: "bosses",
+    location: "Drop de Night's Cavalry en Bellum Highway.",
+    region: ["Liurnia"]
+  }),
+  makeAsh({
+    id: "sword-dance",
+    slug: "danza-de-espadas",
+    nameEs: "Danza de espadas",
+    nameEn: "Sword Dance",
+    shortDescription: "Cadena móvil para presión continua.",
+    longDescription: "Buena opción híbrida para armas medianas y largas.",
+    tags: ["area", "dex", "infusable"],
+    bestFor: ["Área", "PvE dinámico"],
     bestWeapons: [
       { nameEs: "Nagakiba", nameEn: "Nagakiba" },
-      { nameEs: "Lanza de guerra", nameEn: "Partisan" },
+      { nameEs: "Alabarda del Jinete Nocturno", nameEn: "Nightrider Glaive" }
+    ],
+    excelsAt: "hibrido",
+    location: "Escarabajo al norte de Caelid Highway South.",
+    region: ["Caelid"]
+  }),
+  makeAsh({
+    id: "ice-spear",
+    slug: "lanza-de-hielo",
+    nameEs: "Lanza de hielo",
+    nameEn: "Ice Spear",
+    shortDescription: "Proyectil de escarcha muy útil para control de distancia.",
+    longDescription: "Permite jugar seguro y aplicar escarcha con buena consistencia.",
+    tags: ["magic", "area", "infusable"],
+    bestFor: ["Área", "Control de rango"],
+    bestWeapons: [
+      { nameEs: "Naginata cruzada", nameEn: "Cross-Naginata" },
       { nameEs: "Lanza", nameEn: "Spear" }
     ],
-    excelsAt: "Área",
-    advantages: ["Alcance seguro", "Aplica escarcha con fiabilidad", "Buen control de grupos"],
-    disadvantages: ["Menos burst en jefes resistentes", "Depende de distancia media"],
-    location: "Escarabajo lágrima al sudeste de Caria Manor (Liurnia)."
-  }
+    excelsAt: "area",
+    location: "Escarabajo lágrima al sudeste de Caria Manor.",
+    region: ["Liurnia"]
+  }),
+  makeAsh({
+    id: "seppuku",
+    slug: "seppuku",
+    nameEs: "Seppuku",
+    nameEn: "Seppuku",
+    shortDescription: "La ceniza más fuerte para builds de hemorragia en melee.",
+    longDescription: "Incrementa enormemente la acumulación de bleed en katanas y naginatas.",
+    tags: ["bosses", "bleed", "dex", "arcane", "infusable"],
+    bestFor: ["Bosses", "Bleed extremo"],
+    bestWeapons: [
+      { nameEs: "Uchigatana", nameEn: "Uchigatana" },
+      { nameEs: "Nagakiba", nameEn: "Nagakiba" },
+      { nameEs: "Naginata cruzada", nameEn: "Cross-Naginata" }
+    ],
+    excelsAt: "bosses",
+    location: "Se obtiene en Mountaintops of the Giants, zona del lago helado.",
+    region: ["Cimas de los Gigantes"]
+  }),
+  makeAsh({
+    id: "square-off",
+    slug: "square-off",
+    nameEs: "Square Off",
+    nameEn: "Square Off",
+    shortDescription: "Excelente herramienta de postura en espadas rectas.",
+    longDescription: "Muy buena para romper postura con bajo coste y ejecución clara.",
+    tags: ["bosses", "stanceBreak", "strength", "dex", "infusable"],
+    bestFor: ["Bosses", "Postura"],
+    bestWeapons: [
+      { nameEs: "Espada larga", nameEn: "Longsword" },
+      { nameEs: "Espada recta noble", nameEn: "Noble's Slender Sword" }
+    ],
+    excelsAt: "bosses",
+    location: "Disponible en espadas rectas base y transferible.",
+    region: ["Necrolimbo"]
+  }),
+  makeAsh({
+    id: "bloodhounds-step",
+    slug: "paso-de-sabueso",
+    nameEs: "Paso de sabueso",
+    nameEn: "Bloodhound's Step",
+    shortDescription: "Movilidad defensiva top para sobrevivir y reposicionar.",
+    longDescription: "No es de daño directo, pero mejora muchísimo la consistencia en peleas difíciles.",
+    tags: ["beginner", "bosses", "dex", "infusable"],
+    bestFor: ["Supervivencia", "Bosses agresivos"],
+    bestWeapons: [
+      { nameEs: "Uchigatana", nameEn: "Uchigatana" },
+      { nameEs: "Mandoble", nameEn: "Claymore" }
+    ],
+    excelsAt: "hibrido",
+    location: "Drop de Night's Cavalry en Dragonbarrow, puente de Lenne's Rise.",
+    region: ["Caelid"]
+  })
 ];

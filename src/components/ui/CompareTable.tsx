@@ -1,94 +1,134 @@
-import { useMemo, useState } from "react";
-import type { BuildEntry } from "../../types";
-
-type SortableField = "name" | "bosses" | "area" | "stagger" | "bleed" | "ease";
-type SortDirection = "asc" | "desc";
+﻿import { useMemo, useState } from "react";
+import { fieldOrder, uiText, stageLabelMap } from "../../data/meta";
+import type { RankingBuild } from "../../types";
 
 interface CompareTableProps {
-  builds: BuildEntry[];
-  onSelectBuild: (build: BuildEntry) => void;
+  builds: RankingBuild[];
+  onSelectBuild: (build: RankingBuild) => void;
 }
 
-const sortableHeaders: { label: string; field: SortableField }[] = [
-  { label: "Configuración", field: "name" },
-  { label: "Jefes", field: "bosses" },
-  { label: "Área", field: "area" },
-  { label: "Postura", field: "stagger" },
-  { label: "Hemorragia", field: "bleed" },
-  { label: "Facilidad", field: "ease" }
-];
+const MAX_SELECTION = 4;
 
 export const CompareTable = ({ builds, onSelectBuild }: CompareTableProps) => {
-  const [sortField, setSortField] = useState<SortableField>("bosses");
-  const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
+  const [selectedIds, setSelectedIds] = useState<string[]>(() => builds.slice(0, 3).map((build) => build.id));
 
-  const sortedBuilds = useMemo(() => {
-    return [...builds].sort((a, b) => {
-      if (sortField === "name") {
-        const result = a.nameEs.localeCompare(b.nameEs);
-        return sortDirection === "asc" ? result : -result;
+  const selectedBuilds = useMemo(
+    () => builds.filter((build) => selectedIds.includes(build.id)).sort((a, b) => selectedIds.indexOf(a.id) - selectedIds.indexOf(b.id)),
+    [builds, selectedIds]
+  );
+
+  const toggleSelected = (id: string) => {
+    setSelectedIds((current) => {
+      if (current.includes(id)) {
+        return current.filter((entry) => entry !== id);
       }
 
-      const result = a.score[sortField] - b.score[sortField];
-      return sortDirection === "asc" ? result : -result;
-    });
-  }, [builds, sortDirection, sortField]);
+      if (current.length >= MAX_SELECTION) {
+        return current;
+      }
 
-  const onSort = (field: SortableField) => {
-    if (field === sortField) {
-      setSortDirection((current) => (current === "asc" ? "desc" : "asc"));
-      return;
-    }
-    setSortField(field);
-    setSortDirection(field === "name" ? "asc" : "desc");
+      return [...current, id];
+    });
   };
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-zinc-700 bg-zinc-950/70">
-      <table className="min-w-[980px] w-full border-collapse text-left text-sm">
-        <thead className="border-b border-zinc-700 bg-zinc-900/90 text-xs uppercase tracking-[0.12em] text-zinc-200">
-          <tr>
-            {sortableHeaders.map((header) => {
-              const active = header.field === sortField;
-              return (
-                <th key={header.field} className="px-4 py-3">
-                  <button
-                    type="button"
-                    onClick={() => onSort(header.field)}
-                    className={`inline-flex items-center gap-2 transition ${active ? "text-rune" : "hover:text-zinc-100"}`}
-                  >
-                    {header.label}
-                    <span className="text-[10px]">{active ? (sortDirection === "asc" ? "▲" : "▼") : "↕"}</span>
-                  </button>
-                </th>
-              );
-            })}
-            <th className="px-4 py-3">Escalado</th>
-            <th className="px-4 py-3">Etapa ideal</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sortedBuilds.map((build) => (
-            <tr
-              key={build.id}
-              className="cursor-pointer border-b border-zinc-800/80 text-zinc-200 transition hover:bg-zinc-800/45"
-              onClick={() => onSelectBuild(build)}
-            >
-              <td className="px-4 py-3">
-                <p className="font-semibold text-zinc-50">{build.nameEs}</p>
-                <p className="text-xs text-zinc-400">{build.nameEn}</p>
-              </td>
-              <td className="px-4 py-3">{build.score.bosses}/10</td>
-              <td className="px-4 py-3">{build.score.area}/10</td>
-              <td className="px-4 py-3">{build.score.stagger}/10</td>
-              <td className="px-4 py-3">{build.score.bleed}/10</td>
-              <td className="px-4 py-3">{build.score.ease}/10</td>
-              <td className="px-4 py-3">{build.scaling}</td>
-              <td className="px-4 py-3">{build.idealGameStage}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="space-y-4">
+      <div className="premium-card p-4">
+        <p className="mb-3 text-sm text-zinc-200">{uiText.compareSelectHint}</p>
+        <div className="flex flex-wrap gap-2">
+          {builds.map((build) => {
+            const active = selectedIds.includes(build.id);
+            return (
+              <button
+                key={build.id}
+                type="button"
+                onClick={() => toggleSelected(build.id)}
+                className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+                  active
+                    ? "border-rune bg-rune/20 text-rune"
+                    : "border-zinc-600 bg-zinc-800/60 text-zinc-100 hover:border-zinc-400"
+                }`}
+              >
+                {active ? uiText.compareRemove : uiText.compareAdd} {build.nameEs}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {selectedBuilds.length === 0 ? (
+        <div className="premium-card p-4 text-sm text-zinc-300">{uiText.compareNoItems}</div>
+      ) : (
+        <div className="overflow-x-auto rounded-2xl border border-zinc-700 bg-zinc-950/70">
+          <table className="min-w-[940px] w-full border-collapse text-left text-sm">
+            <thead className="border-b border-zinc-700 bg-zinc-900/90 text-xs uppercase tracking-[0.12em] text-zinc-200">
+              <tr>
+                <th className="px-4 py-3">{uiText.compareMetric}</th>
+                {selectedBuilds.map((build) => (
+                  <th key={build.id} className="px-4 py-3">
+                    <button type="button" onClick={() => onSelectBuild(build)} className="text-left hover:text-rune">
+                      <p className="font-semibold normal-case text-zinc-50">{build.nameEs}</p>
+                      <p className="normal-case text-[11px] text-zinc-400">{build.nameEn}</p>
+                    </button>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-zinc-800/70">
+                <td className="px-4 py-3 text-zinc-300">{fieldOrder.comparisonStage}</td>
+                {selectedBuilds.map((build) => (
+                  <td key={`stage-${build.id}`} className="px-4 py-3 text-zinc-100">
+                    {build.stage.map((stage) => stageLabelMap[stage]).join(", ")}
+                  </td>
+                ))}
+              </tr>
+              <tr className="border-b border-zinc-800/70">
+                <td className="px-4 py-3 text-zinc-300">{fieldOrder.comparisonBosses}</td>
+                {selectedBuilds.map((build) => (
+                  <td key={`boss-${build.id}`} className="px-4 py-3 text-zinc-100">{build.score.bosses}/10</td>
+                ))}
+              </tr>
+              <tr className="border-b border-zinc-800/70">
+                <td className="px-4 py-3 text-zinc-300">{fieldOrder.comparisonArea}</td>
+                {selectedBuilds.map((build) => (
+                  <td key={`area-${build.id}`} className="px-4 py-3 text-zinc-100">{build.score.area}/10</td>
+                ))}
+              </tr>
+              <tr className="border-b border-zinc-800/70">
+                <td className="px-4 py-3 text-zinc-300">{fieldOrder.comparisonPosture}</td>
+                {selectedBuilds.map((build) => (
+                  <td key={`posture-${build.id}`} className="px-4 py-3 text-zinc-100">{build.score.postura}/10</td>
+                ))}
+              </tr>
+              <tr className="border-b border-zinc-800/70">
+                <td className="px-4 py-3 text-zinc-300">{fieldOrder.comparisonBleed}</td>
+                {selectedBuilds.map((build) => (
+                  <td key={`bleed-${build.id}`} className="px-4 py-3 text-zinc-100">{build.score.hemorragia}/10</td>
+                ))}
+              </tr>
+              <tr className="border-b border-zinc-800/70">
+                <td className="px-4 py-3 text-zinc-300">{fieldOrder.comparisonEase}</td>
+                {selectedBuilds.map((build) => (
+                  <td key={`ease-${build.id}`} className="px-4 py-3 text-zinc-100">{build.score.facilidad}/10</td>
+                ))}
+              </tr>
+              <tr className="border-b border-zinc-800/70">
+                <td className="px-4 py-3 text-zinc-300">{fieldOrder.comparisonScaling}</td>
+                {selectedBuilds.map((build) => (
+                  <td key={`scaling-${build.id}`} className="px-4 py-3 text-zinc-100">{build.scaling}</td>
+                ))}
+              </tr>
+              <tr>
+                <td className="px-4 py-3 text-zinc-300">{fieldOrder.comparisonRecommendation}</td>
+                {selectedBuilds.map((build) => (
+                  <td key={`rec-${build.id}`} className="px-4 py-3 text-zinc-100">{build.recommendation}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

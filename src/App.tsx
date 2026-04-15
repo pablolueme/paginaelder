@@ -1,23 +1,27 @@
-import { useMemo, useState } from "react";
-import { rankingBuilds, homeHighlights, methodologyText, roleWinners } from "./data/builds";
-import { uniqueWeapons, infusableSetups } from "./data/weapons";
+﻿import { useMemo, useState } from "react";
 import { topAshesOfWar } from "./data/ashes";
+import { rankingBuilds } from "./data/builds";
+import { footerText, homeHighlights, sectionText, uiText } from "./data/meta";
+import { playerBuilds } from "./data/playerBuilds";
 import { regionGuides } from "./data/locations";
-import type { BuildEntry, FilterKey } from "./types";
-import { getFilteredBuilds } from "./utils/filters";
+import { infusableSetups, uniqueWeapons } from "./data/weapons";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import { Footer } from "./components/layout/Footer";
 import { StickyNav } from "./components/layout/StickyNav";
-import { HomeSection } from "./components/sections/HomeSection";
-import { RankingSection } from "./components/sections/RankingSection";
-import { UniqueWeaponsSection } from "./components/sections/UniqueWeaponsSection";
-import { InfusableSection } from "./components/sections/InfusableSection";
+import { BackToTopButton } from "./components/layout/BackToTopButton";
 import { AshesSection } from "./components/sections/AshesSection";
 import { CompareSection } from "./components/sections/CompareSection";
-import { LocationsSection } from "./components/sections/LocationsSection";
 import { FavoritesSection } from "./components/sections/FavoritesSection";
-import { Footer } from "./components/layout/Footer";
+import { HomeSection } from "./components/sections/HomeSection";
+import { InfusableSection } from "./components/sections/InfusableSection";
+import { LocationsSection } from "./components/sections/LocationsSection";
+import { PlayerBuildsSection } from "./components/sections/PlayerBuildsSection";
+import { RankingSection } from "./components/sections/RankingSection";
+import { UniqueWeaponsSection } from "./components/sections/UniqueWeaponsSection";
+import { WeaponsIntroSection } from "./components/sections/WeaponsIntroSection";
 import { BuildDrawer } from "./components/ui/BuildDrawer";
-import { BackToTopButton } from "./components/layout/BackToTopButton";
+import type { FilterKey, RankingBuild } from "./types";
+import { getFilteredAshes, getFilteredBuilds, getFilteredCollection } from "./utils/filters";
 
 interface FavoriteViewItem {
   id: string;
@@ -31,10 +35,25 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [activeFilters, setActiveFilters] = useState<FilterKey[]>([]);
   const [favorites, setFavorites] = useLocalStorage<string[]>("elden-base-favorites", []);
-  const [selectedBuild, setSelectedBuild] = useState<BuildEntry | undefined>();
+  const [selectedBuild, setSelectedBuild] = useState<RankingBuild | undefined>();
 
   const filteredBuilds = useMemo(
     () => getFilteredBuilds(rankingBuilds, search, activeFilters),
+    [search, activeFilters]
+  );
+
+  const filteredUniqueWeapons = useMemo(
+    () => getFilteredCollection(uniqueWeapons, search, activeFilters),
+    [search, activeFilters]
+  );
+
+  const filteredInfusableSetups = useMemo(
+    () => getFilteredCollection(infusableSetups, search, activeFilters),
+    [search, activeFilters]
+  );
+
+  const filteredAshes = useMemo(
+    () => getFilteredAshes(topAshesOfWar, search, activeFilters),
     [search, activeFilters]
   );
 
@@ -56,7 +75,7 @@ const App = () => {
         id: `build:${build.id}`,
         titleEs: build.nameEs,
         titleEn: build.nameEn,
-        subtitle: "Configuración del ranking PvE",
+        subtitle: sectionText.ranking.title,
         href: "#ranking"
       })
     );
@@ -66,7 +85,7 @@ const App = () => {
         id: `unique:${weapon.id}`,
         titleEs: weapon.nameEs,
         titleEn: weapon.nameEn,
-        subtitle: "Arma única",
+        subtitle: sectionText.somber.title,
         href: "#somber"
       })
     );
@@ -76,7 +95,7 @@ const App = () => {
         id: `infusable:${setup.id}`,
         titleEs: setup.nameEs,
         titleEn: setup.nameEn,
-        subtitle: "Configuración infusable",
+        subtitle: sectionText.infusables.title,
         href: "#infusables"
       })
     );
@@ -86,7 +105,7 @@ const App = () => {
         id: `ash:${ash.id}`,
         titleEs: ash.nameEs,
         titleEn: ash.nameEn,
-        subtitle: "Ceniza de guerra",
+        subtitle: sectionText.ashes.title,
         href: "#ashes"
       })
     );
@@ -100,13 +119,23 @@ const App = () => {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-zinc-900 focus:px-3 focus:py-2 focus:text-sm"
       >
-        Saltar al contenido
+        {uiText.skipToContent}
       </a>
 
       <StickyNav favoritesCount={favorites.length} />
 
       <main id="main-content" className="mx-auto max-w-7xl px-4 pb-16 lg:px-6">
-        <HomeSection highlights={homeHighlights} roleWinners={roleWinners} methodology={methodologyText} />
+        <HomeSection
+          eyebrow={sectionText.home.eyebrow}
+          title={sectionText.home.title}
+          subtitle={sectionText.home.subtitle}
+          ctaRanking={sectionText.home.ctaRanking}
+          ctaWeapons={sectionText.home.ctaWeapons}
+          ctaAshes={sectionText.home.ctaAshes}
+          methodologyTitle={uiText.methodologyTitle}
+          methodology={sectionText.home.methodology}
+          highlights={homeHighlights}
+        />
 
         <RankingSection
           builds={filteredBuilds}
@@ -120,30 +149,24 @@ const App = () => {
           onOpenBuild={setSelectedBuild}
         />
 
-        <UniqueWeaponsSection
-          weapons={uniqueWeapons}
-          search={search}
-          favorites={favorites}
-          onToggleFavorite={toggleFavorite}
-        />
+        <WeaponsIntroSection />
 
-        <InfusableSection
-          setups={infusableSetups}
-          search={search}
-          favorites={favorites}
-          onToggleFavorite={toggleFavorite}
-        />
+        <UniqueWeaponsSection weapons={filteredUniqueWeapons} favorites={favorites} onToggleFavorite={toggleFavorite} />
 
-        <AshesSection ashes={topAshesOfWar} search={search} favorites={favorites} onToggleFavorite={toggleFavorite} />
+        <InfusableSection setups={filteredInfusableSetups} favorites={favorites} onToggleFavorite={toggleFavorite} />
+
+        <AshesSection ashes={filteredAshes} favorites={favorites} onToggleFavorite={toggleFavorite} />
 
         <CompareSection builds={rankingBuilds} onOpenBuild={setSelectedBuild} />
 
         <LocationsSection regions={regionGuides} />
 
+        <PlayerBuildsSection builds={playerBuilds} />
+
         <FavoritesSection items={favoriteItems} />
       </main>
 
-      <Footer />
+      <Footer title={footerText.title} description={footerText.description} note={footerText.note} />
       <BackToTopButton />
       <BuildDrawer build={selectedBuild} onClose={() => setSelectedBuild(undefined)} />
     </div>

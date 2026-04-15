@@ -1,26 +1,26 @@
-import type { RegionGuide } from "../types";
+﻿import type { RegionGuide } from "../types";
 
 export const regionGuides: RegionGuide[] = [
   {
-    region: "Limgrave",
+    region: "Necrolimbo",
     items: [
       {
         nameEs: "Golpes salvajes",
         nameEn: "Wild Strikes",
         kind: "Ceniza de guerra",
-        note: "Scarab en el camino desde Stormhill Shack hacia Castleward Tunnel."
+        note: "Escarabajo entre Stormhill Shack y Castleward Tunnel."
       },
       {
-        nameEs: "Estocada perforante",
-        nameEn: "Impaling Thrust",
-        kind: "Ceniza de guerra",
-        note: "Compra a Bernahl en Warmaster's Shack."
-      },
-      {
-        nameEs: "Ancla oxidada",
-        nameEn: "Rusted Anchor",
+        nameEs: "Mandoble",
+        nameEn: "Claymore",
         kind: "Arma",
-        note: "Morne Tunnel, en Weeping Peninsula (zona sur de Limgrave)."
+        note: "Se consigue en Castillo Morne."
+      },
+      {
+        nameEs: "Colmillo de sabueso",
+        nameEn: "Bloodhound's Fang",
+        kind: "Arma",
+        note: "Derrota a Bloodhound Knight Darriwil en Forlorn Hound Evergaol."
       }
     ]
   },
@@ -31,25 +31,19 @@ export const regionGuides: RegionGuide[] = [
         nameEs: "Nagakiba",
         nameEn: "Nagakiba",
         kind: "Arma",
-        note: "Quest de Yura o derrota directa; ubicación final según progreso."
+        note: "Se obtiene por la quest de Yura o matándolo, según progreso."
+      },
+      {
+        nameEs: "Ala de Astel",
+        nameEn: "Wing of Astel",
+        kind: "Arma",
+        note: "Disponible en Nokstella."
       },
       {
         nameEs: "Alabarda del Jinete Nocturno",
         nameEn: "Nightrider Glaive",
         kind: "Arma",
         note: "Drop de Night's Cavalry en Bellum Highway."
-      },
-      {
-        nameEs: "Caza de gigantes",
-        nameEn: "Giant Hunt",
-        kind: "Ceniza de guerra",
-        note: "Drop de Night's Cavalry en Bellum Highway."
-      },
-      {
-        nameEs: "Lanza de hielo",
-        nameEn: "Ice Spear",
-        kind: "Ceniza de guerra",
-        note: "Escarabajo lágrima al sudeste de Caria Manor."
       }
     ]
   },
@@ -60,30 +54,30 @@ export const regionGuides: RegionGuide[] = [
         nameEs: "Hoja pétrea",
         nameEn: "Cragblade",
         kind: "Ceniza de guerra",
-        note: "Scarab al oeste de Impassable Greatbridge."
+        note: "Escarabajo al oeste de Impassable Greatbridge."
       },
       {
         nameEs: "Doble tajo",
         nameEn: "Double Slash",
         kind: "Ceniza de guerra",
-        note: "Scarab en Sellia, Town of Sorcery."
+        note: "Se obtiene en Sellia, Town of Sorcery."
       },
       {
-        nameEs: "Espadón",
-        nameEn: "Greatsword",
+        nameEs: "Velo lunar",
+        nameEn: "Moonveil",
         kind: "Arma",
-        note: "En un carro custodiado por perros gigantes."
+        note: "Derrota al Magma Wyrm de Gael Tunnel."
       },
       {
-        nameEs: "Garra de león",
-        nameEn: "Lion's Claw",
-        kind: "Ceniza de guerra",
-        note: "Drop del león guardián en Fort Gael."
+        nameEs: "Naginata cruzada",
+        nameEn: "Cross-Naginata",
+        kind: "Arma",
+        note: "Está en Gael Tunnel."
       }
     ]
   },
   {
-    region: "Altus",
+    region: "Meseta Altus",
     items: [
       {
         nameEs: "Gran estrella",
@@ -95,13 +89,7 @@ export const regionGuides: RegionGuide[] = [
         nameEs: "Aplastagigantes",
         nameEn: "Giant-Crusher",
         kind: "Arma",
-        note: "Cofre de carruaje al sur de Outer Wall Phantom Tree."
-      },
-      {
-        nameEs: "Voto dorado",
-        nameEn: "Golden Vow",
-        kind: "Mejora",
-        note: "Corpse-Stench Shack (Mt. Gelmir/Altus)."
+        note: "Carro al sur de Outer Wall Phantom Tree."
       }
     ]
   },
@@ -112,53 +100,64 @@ export const regionGuides: RegionGuide[] = [
         nameEs: "Puño estelar",
         nameEn: "Star Fist",
         kind: "Arma",
-        note: "Cerca del coliseo en West Capital Rampart."
-      },
-      {
-        nameEs: "Lanza sagrada de Mohgwyn",
-        nameEn: "Mohgwyn's Sacred Spear",
-        kind: "Arma",
-        note: "Recuerdo de Mohg en Roundtable Hold."
+        note: "Cerca del coliseo, zona West Capital Rampart."
       },
       {
         nameEs: "Exultación del Señor de la Sangre",
         nameEn: "Lord of Blood's Exultation",
         kind: "Talismán",
-        note: "Leyndell Catacombs; clave para setups de hemorragia."
+        note: "Leyndell Catacombs, clave para builds de hemorragia."
       }
     ]
   },
   {
-    region: "Mountaintops",
+    region: "Cimas de los Gigantes",
     items: [
+      {
+        nameEs: "Seppuku",
+        nameEn: "Seppuku",
+        kind: "Ceniza de guerra",
+        note: "En la zona del lago helado."
+      },
       {
         nameEs: "Golpe de relámpago de dragones antiguos",
         nameEn: "Ancient Dragons' Lightning Strike",
         kind: "Hechizo",
-        note: "Requiere el libro de oración avanzado y progreso de late game."
-      },
-      {
-        nameEs: "Talismán de espada ritual",
-        nameEn: "Ritual Sword Talisman",
-        kind: "Talismán",
-        note: "Se obtiene antes en Altus, pero brilla en setups de burst de late game."
+        note: "Herramienta de burst para builds de Fe en late game."
       }
     ]
   },
   {
-    region: "Farum Azula",
+    region: "Farum Azula en ruinas",
     items: [
       {
         nameEs: "Fragmento de Alexander",
         nameEn: "Shard of Alexander",
         kind: "Talismán",
-        note: "Final de la quest de Alexander; clave para habilidades de arma."
+        note: "Final de la quest de Alexander; boost top para habilidades."
       },
       {
         nameEs: "Talismán granescudo crestadragón",
         nameEn: "Dragoncrest Greatshield Talisman",
         kind: "Talismán",
-        note: "Uno de los mejores para supervivencia en PvE."
+        note: "Defensa premium para PvE tardío."
+      }
+    ]
+  },
+  {
+    region: "Palacio de Mohgwyn",
+    items: [
+      {
+        nameEs: "Lanza sagrada de Mohgwyn",
+        nameEn: "Mohgwyn's Sacred Spear",
+        kind: "Arma",
+        note: "Se consigue intercambiando el recuerdo de Mohg."
+      },
+      {
+        nameEs: "Hoja blasfema",
+        nameEn: "Blasphemous Blade",
+        kind: "Arma",
+        note: "Referencia meta de boss killer en el juego base."
       }
     ]
   }
