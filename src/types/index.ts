@@ -10,13 +10,16 @@ export type FilterKey =
   | "area"
   | "stanceBreak"
   | "bleed"
+  | "frost"
   | "magic"
   | "faith"
   | "strength"
   | "dex"
   | "arcane"
   | "infusable"
-  | "unique";
+  | "unique"
+  | "dark"
+  | "skillDamage";
 
 export type EntryCategory =
   | "buildMeta"
@@ -152,6 +155,15 @@ export interface PlayerBuildEntry {
   stats: string[];
   talismans: LocalizedName[];
   buffs: LocalizedName[];
+  seals?: LocalizedName[];
+  sealNote?: string;
+  incantations?: LocalizedName[];
+  incantationNote?: string;
+  gameplayLoop?: string[];
+  weaponSetupNotes?: string[];
+  armorSet?: LocalizedName;
+  armorNote?: string;
+  cardTheme?: "default" | "darkAssassin";
   locations: Array<LocalizedName & { howToGet: string }>;
   description: string;
   pros: string[];

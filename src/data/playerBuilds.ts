@@ -162,5 +162,126 @@ export const playerBuilds: PlayerBuildEntry[] = [
       "Depende del dominio de spacing para exprimirla"
     ],
     recommendedFor: ["Run completa", "Jugadores nuevos", "Bosses PvE"]
+  },
+  {
+    id: "black-knife-frost-faith-build",
+    slug: "build-cuchillo-negro-y-escarcha",
+    author: "Comunidad",
+    buildName: "Build Cuchillo Negro y Escarcha",
+    subtitle: "Black Knife Frost Faith Build",
+    buildType: "hybrid",
+    tags: ["playerBuild", "bosses", "dex", "faith", "unique", "dark", "frost", "bleed", "skillDamage"],
+    focus:
+      "Build dark de Destreza/Fe centrada en Cuchillo Negro como núcleo de daño y Gran cuchillo con Niebla escalofriante para presión de escarcha y hemorragia",
+    stage: ["midgame", "late", "endgame"],
+    weaponMain: { nameEs: "Cuchillo Negro", nameEn: "Black Knife" },
+    weaponSecondary: { nameEs: "Gran cuchillo", nameEn: "Great Knife" },
+    ashOfWar: { nameEs: "Niebla escalofriante", nameEn: "Chilling Mist" },
+    shortDescription:
+      "Build de Destreza y Fe centrada en Cuchillo Negro como arma principal y Gran cuchillo con Niebla escalofriante como secundaria, mezclando daño sagrado, escarcha y hemorragia.",
+    longDescription:
+      "La Build Cuchillo Negro y Escarcha combina el daño de skill de Black Knife con una segunda daga mucho más flexible: Great Knife con Ash of War Chilling Mist. El resultado es una build muy agresiva y con mucha personalidad, capaz de aplicar presión constante con Blade of Death, usar escarcha para aumentar el daño y aprovechar la hemorragia natural del Gran cuchillo. Es una build muy atractiva para PvE porque mezcla daño sagrado, daño por skill y estados alterados, todo dentro de una estética oscura de asesina.",
+    whenToUse:
+      "Bosses, enemigos con mucha vida, jugadores que quieren una build dark de Destreza/Fe y estilos de juego agresivos con doble daga.",
+    weakerAgainst:
+      "Rinde peor contra enemigos muy resistentes al daño sagrado o a estados alterados, y exige jugar a corta distancia con más precisión que otras builds más cómodas.",
+    recommendation:
+      "Añadirla como build dark de nicho muy potente para mid-late-endgame, centrada en skill damage, escarcha y presión de daga.",
+    notes: [
+      "Es una build de Destreza/Fe con bastante peso en Fe para potenciar Black Knife y los conjuros, mientras que Great Knife aporta una capa secundaria de escarcha y hemorragia.",
+      "Exultación del Señor de la Sangre funciona como alternativa si quieres empujar más la parte de hemorragia del Gran cuchillo."
+    ],
+    stats: ["Vigor: 45-55", "Mente: 18-25", "Aguante: 20-25", "Fuerza: mínimos", "Destreza: 20-30", "Fe: 35-55"],
+    talismans: [
+      { nameEs: "Fragmento de Alejandro", nameEn: "Shard of Alexander" },
+      { nameEs: "Talismán del escorpión sagrado", nameEn: "Sacred Scorpion Charm" },
+      { nameEs: "Talismán de espada ritual", nameEn: "Ritual Sword Talisman" },
+      { nameEs: "Talismán gran escudo con blasón de dragón", nameEn: "Dragoncrest Greatshield Talisman" },
+      { nameEs: "Exultación del Señor de la Sangre", nameEn: "Lord of Blood's Exultation" }
+    ],
+    buffs: [
+      { nameEs: "Voto dorado", nameEn: "Golden Vow" },
+      { nameEs: "Llama, concédeme fuerza", nameEn: "Flame, Grant Me Strength" },
+      { nameEs: "Hoja Negra", nameEn: "Black Blade" }
+    ],
+    seals: [
+      { nameEs: "Sello de dedos", nameEn: "Finger Seal" },
+      { nameEs: "Sello Matadioses", nameEn: "Godslayer's Seal" },
+      { nameEs: "Sello del Árbol Áureo", nameEn: "Erdtree Seal" }
+    ],
+    sealNote:
+      "El Sello de dedos encaja bien como opción básica, pero si la build evoluciona hacia Fe alta, el Sello Matadioses y sobre todo el Sello del Árbol Áureo suelen rendir mejor.",
+    incantations: [
+      { nameEs: "Voto dorado", nameEn: "Golden Vow" },
+      { nameEs: "Llama, concédeme fuerza", nameEn: "Flame, Grant Me Strength" },
+      { nameEs: "Hoja Negra", nameEn: "Black Blade" }
+    ],
+    incantationNote:
+      "La build puede empezar con Sello de dedos, pero gana mucho valor si se apoya con conjuros de Fe y evoluciona a sellos mejores.",
+    gameplayLoop: [
+      "Abrir con Hoja de la Muerte para marcar el objetivo y bajar su vida máxima.",
+      "Usar Cuchillo Negro para castigar a bosses y mantener presión con su skill principal.",
+      "Entrar con Gran cuchillo + Niebla escalofriante para activar escarcha y sumar presión de hemorragia.",
+      "Complementar con conjuros de Fe cuando convenga según ventana y distancia.",
+      "Reaplicar buffs antes de peleas largas o fases nuevas de boss."
+    ],
+    weaponSetupNotes: [
+      "Cuchillo Negro es el arma principal y la pieza central de la build.",
+      "Gran cuchillo funciona como secundaria infusable para adaptar la presión.",
+      "Gran cuchillo con Niebla escalofriante aporta escarcha y presión adicional de estado."
+    ],
+    armorSet: { nameEs: "Set de Cuchillo Negro", nameEn: "Black Knife Set" },
+    armorNote: "La build gana mucha identidad visual con el Set de Cuchillo Negro, reforzando la fantasía de asesina oscura.",
+    cardTheme: "darkAssassin",
+    locations: [
+      {
+        nameEs: "Cuchillo Negro",
+        nameEn: "Black Knife",
+        howToGet:
+          "Lo suelta una Black Knife Assassin en la entrada de Sainted Hero's Grave, en Altus Plateau."
+      },
+      {
+        nameEs: "Gran cuchillo",
+        nameEn: "Great Knife",
+        howToGet:
+          "Es una daga con hemorragia base que puede conseguirse según clase inicial o como drop de ciertos enemigos."
+      },
+      {
+        nameEs: "Niebla escalofriante",
+        nameEn: "Chilling Mist",
+        howToGet:
+          "La suelta un escarabajo lágrima invisible en Three Sisters (Liurnia), en la zona de Caria Manor."
+      },
+      {
+        nameEs: "Sello de dedos",
+        nameEn: "Finger Seal",
+        howToGet: "Es el sello básico para conjuros de Fe y sirve muy bien como opción inicial."
+      },
+      {
+        nameEs: "Sello Matadioses",
+        nameEn: "Godslayer's Seal",
+        howToGet:
+          "Se encuentra en Stormveil Castle tras una puerta con estatua de diablillos que requiere Stonesword Key."
+      },
+      {
+        nameEs: "Sello del Árbol Áureo",
+        nameEn: "Erdtree Seal",
+        howToGet: "Se encuentra en Volcano Manor, en la zona bajo Prison Town Church."
+      }
+    ],
+    description:
+      "Build de Destreza/Fe temática oscura con doble daga, enfocada en Blade of Death, presión agresiva y estados alterados.",
+    pros: [
+      "Gran daño de habilidad con Blade of Death",
+      "Combina daño sagrado, escarcha y hemorragia",
+      "Muy fuerte en bosses con ventanas cortas",
+      "Estética dark muy marcada"
+    ],
+    cons: [
+      "Exige jugar muy cerca del objetivo",
+      "Pierde valor contra resistencias altas a sagrado o estados",
+      "Requiere buena gestión de buffs y timings"
+    ],
+    recommendedFor: ["Build oscura", "Jefes", "Destreza / Fe", "Estilo agresivo de doble daga"]
   }
 ];
