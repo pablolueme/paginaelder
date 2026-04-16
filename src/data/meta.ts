@@ -120,7 +120,8 @@ export const uiText = {
   location: "Localización",
   mainWeapon: "Arma principal",
   secondaryWeapon: "Arma secundaria",
-  ashOfWar: "Ceniza de guerra"
+  ashOfWar: "Ceniza de guerra",
+  buildType: "Tipo de build"
 };
 
 export const sectionText = {

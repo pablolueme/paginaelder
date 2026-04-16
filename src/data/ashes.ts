@@ -124,15 +124,20 @@ export const topAshesOfWar: AshOfWarEntry[] = [
     slug: "estocada-perforante",
     nameEs: "Estocada perforante",
     nameEn: "Impaling Thrust",
-    shortDescription: "Punción segura y constante para castigo lineal.",
-    longDescription: "Muy fiable contra objetivos con defensa frontal.",
-    tags: ["bosses", "dex", "infusable"],
-    bestFor: ["Bosses", "Castigo puntual"],
+    shortDescription: "Una de las cenizas más fiables para castigo lineal en PvE sin depender de animaciones largas.",
+    longDescription:
+      "Rompe ritmo de enemigos con escudo y castiga ventanas cortas con mucha seguridad. Brilla en builds STR/DEX de arma media-larga y sigue siendo útil durante toda la run.",
+    tags: ["bosses", "stanceBreak", "strength", "dex", "infusable"],
+    bestFor: ["Bosses con castigo frontal", "Setups de control técnico", "Runs estables sin riesgo alto"],
+    weakerAgainst: ["Tiene menos limpieza de área que otras cenizas de cadena"],
     bestWeapons: [
+      { nameEs: "Alabarda del Jinete Nocturno", nameEn: "Nightrider Glaive" },
       { nameEs: "Mandoble", nameEn: "Claymore" },
       { nameEs: "Gran estoque", nameEn: "Great Epee" }
     ],
     excelsAt: "hibrido",
+    playstyle: "Build STR/DEX técnica orientada a castigo seguro.",
+    recommendation: "Excelente como ceniza principal o alternativa para armas con buen alcance.",
     location: "La vende Bernahl en Warmaster's Shack.",
     region: ["Necrolimbo"]
   }),
@@ -158,15 +163,20 @@ export const topAshesOfWar: AshOfWarEntry[] = [
     slug: "danza-de-espadas",
     nameEs: "Danza de espadas",
     nameEn: "Sword Dance",
-    shortDescription: "Cadena móvil para presión continua.",
-    longDescription: "Buena opción híbrida para armas medianas y largas.",
-    tags: ["area", "dex", "infusable"],
-    bestFor: ["Área", "PvE dinámico"],
+    shortDescription: "Cadena móvil excelente para presión continua con armas de alcance medio-largo.",
+    longDescription:
+      "Aporta agresión, movilidad y daño consistente. Funciona muy bien en builds de DEX y setups híbridos que quieren combinar área con buen castigo de boss.",
+    tags: ["area", "bosses", "dex", "infusable"],
+    bestFor: ["Área", "PvE dinámico", "Builds de destreza agresivas"],
+    weakerAgainst: ["No tiene el stagger bruto de cenizas pesadas como Caza de gigantes"],
     bestWeapons: [
+      { nameEs: "Lanza-espada del guardián", nameEn: "Guardian's Swordspear" },
       { nameEs: "Nagakiba", nameEn: "Nagakiba" },
       { nameEs: "Alabarda del Jinete Nocturno", nameEn: "Nightrider Glaive" }
     ],
     excelsAt: "hibrido",
+    playstyle: "Build DEX de presión continua con reposicionamiento activo.",
+    recommendation: "Muy buena ceniza secundaria para alternar con opciones de mayor burst.",
     location: "Escarabajo al norte de Caelid Highway South.",
     region: ["Caelid"]
   }),
@@ -175,17 +185,65 @@ export const topAshesOfWar: AshOfWarEntry[] = [
     slug: "lanza-de-hielo",
     nameEs: "Lanza de hielo",
     nameEn: "Ice Spear",
-    shortDescription: "Proyectil de escarcha muy útil para control de distancia.",
-    longDescription: "Permite jugar seguro y aplicar escarcha con buena consistencia.",
-    tags: ["magic", "area", "infusable"],
-    bestFor: ["Área", "Control de rango"],
+    shortDescription: "Proyectil de escarcha top para jugar seguro, castigar a media distancia y controlar exploración.",
+    longDescription:
+      "Combina daño decente, alcance y aplicación de escarcha. En armas como Guardian's Swordspear se vuelve una opción premium para PvE por consistencia en bosses y zonas largas.",
+    tags: ["magic", "dex", "bosses", "area", "infusable"],
+    bestFor: ["Exploración segura", "Builds DEX/INT", "Bosses donde se puede castigar a media distancia"],
+    weakerAgainst: ["Pierde valor si no tienes espacio para lanzar la skill"],
     bestWeapons: [
+      { nameEs: "Lanza-espada del guardián", nameEn: "Guardian's Swordspear" },
       { nameEs: "Naginata cruzada", nameEn: "Cross-Naginata" },
       { nameEs: "Lanza", nameEn: "Spear" }
     ],
     excelsAt: "area",
+    playstyle: "Build híbrida de frío con foco en control de distancia.",
+    recommendation: "Nueva recomendación de ceniza para builds fuera del núcleo típico de katanas.",
     location: "Escarabajo lágrima al sudeste de Caria Manor.",
     region: ["Liurnia"]
+  }),
+  makeAsh({
+    id: "black-flame-tornado",
+    slug: "tornado-de-llama-negra",
+    nameEs: "Tornado de llama negra",
+    nameEn: "Black Flame Tornado",
+    stage: ["late", "endgame"],
+    shortDescription: "Ceniza brutal para bosses de mucha vida por daño sostenido y componente de llama negra.",
+    longDescription:
+      "Destaca especialmente en Godskin Peeler y otras armas compatibles cuando el combate permite ejecutar la animación completa. Es una de las mejores opciones de skill damage en base game para objetivos de alta vida.",
+    tags: ["bosses", "area", "dex", "faith", "infusable"],
+    bestFor: ["Bosses de vida alta", "Builds DEX/FE", "Daño sostenido por habilidad"],
+    weakerAgainst: ["Puede sentirse lenta en peleas con poco espacio o jefes extremadamente móviles"],
+    bestWeapons: [
+      { nameEs: "Pelador sacrodermo", nameEn: "Godskin Peeler" },
+      { nameEs: "Twinblade", nameEn: "Twinblade" }
+    ],
+    excelsAt: "bosses",
+    playstyle: "Build de destreza con apoyo de fe orientada a skill damage.",
+    recommendation: "Nueva recomendación de ceniza para ampliar el bloque de infusables fuertes contra jefes.",
+    location: "Viene de base en el Pelador sacrodermo (Godskin Peeler) y puede transferirse.",
+    region: ["Meseta Altus"]
+  }),
+  makeAsh({
+    id: "glintblade-phalanx",
+    slug: "falange-de-hojas-relucientes",
+    nameEs: "Falange de hojas relucientes",
+    nameEn: "Glintblade Phalanx",
+    shortDescription: "Ceniza técnica excelente para abrir postura y preparar críticos.",
+    longDescription:
+      "Se integra de forma sobresaliente con Misericordia/Misericorde y otras armas ligeras cuando el plan es romper postura, forzar ripostes y maximizar daño crítico.",
+    tags: ["bosses", "magic", "stanceBreak", "dex", "infusable"],
+    bestFor: ["Builds INT técnicas", "Postura + crítico", "Bosses con ventanas claras"],
+    weakerAgainst: ["Menos cómoda para limpieza masiva de área"],
+    bestWeapons: [
+      { nameEs: "Misericordia", nameEn: "Misericorde" },
+      { nameEs: "Espada corta", nameEn: "Short Sword" }
+    ],
+    excelsAt: "bosses",
+    playstyle: "Build mágica de precisión orientada a postura y riposte.",
+    recommendation: "Ideal como ceniza de nicho para jugadores que prefieren ejecución técnica.",
+    location: "La vende Rogier en Mesa Redonda tras avanzar Stormveil.",
+    region: ["Mesa Redonda", "Necrolimbo"]
   }),
   makeAsh({
     id: "seppuku",
@@ -210,15 +268,21 @@ export const topAshesOfWar: AshOfWarEntry[] = [
     slug: "square-off",
     nameEs: "Square Off",
     nameEn: "Square Off",
-    shortDescription: "Excelente herramienta de postura en espadas rectas.",
-    longDescription: "Muy buena para romper postura con bajo coste y ejecución clara.",
-    tags: ["bosses", "stanceBreak", "strength", "dex", "infusable"],
-    bestFor: ["Bosses", "Postura"],
+    stage: ["early", "midgame", "late", "endgame", "todaLaRun"],
+    shortDescription: "Ceniza top para espadas rectas: limpia, fuerte y extremadamente fiable durante toda la run.",
+    longDescription:
+      "Square Off sobresale por coste bajo, ejecución clara y daño de postura excelente. Es de las mejores elecciones para builds beginner-friendly y runs completas de base game.",
+    tags: ["bosses", "stanceBreak", "strength", "dex", "beginner", "infusable", "todaLaRun"],
+    bestFor: ["Bosses", "Postura", "Runs completas con espada recta"],
+    weakerAgainst: ["Tiene menos explosión visual que cenizas de alto riesgo"],
     bestWeapons: [
       { nameEs: "Espada larga", nameEn: "Longsword" },
+      { nameEs: "Espadón ancho", nameEn: "Broadsword" },
       { nameEs: "Espada recta noble", nameEn: "Noble's Slender Sword" }
     ],
     excelsAt: "bosses",
+    playstyle: "Build flexible FUE o DES con castigo rápido y postura constante.",
+    recommendation: "Si quieres una run simple y efectiva, Square Off es una apuesta segura.",
     location: "Disponible en espadas rectas base y transferible.",
     region: ["Necrolimbo"]
   }),

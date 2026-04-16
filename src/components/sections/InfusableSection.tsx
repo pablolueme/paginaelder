@@ -43,6 +43,7 @@ export const InfusableSection = ({ setups, favorites, onToggleFavorite }: Infusa
               {setup.badges.map((badge) => (
                 <BadgePill key={badge} badge={badge} />
               ))}
+              {setup.highlightLabel ? <SimpleBadge label={setup.highlightLabel} /> : null}
             </div>
 
             <div className="mb-3 flex flex-wrap gap-2">
@@ -58,6 +59,22 @@ export const InfusableSection = ({ setups, favorites, onToggleFavorite }: Infusa
             <p className="mb-3 text-sm leading-relaxed text-zinc-300">{setup.longDescription}</p>
 
             <div className="space-y-3 text-sm text-zinc-200">
+              <div>
+                <p className="font-semibold text-zinc-100">{uiText.bestUseCases}</p>
+                <ul className="list-disc space-y-1 pl-4">
+                  {setup.bestFor.map((item) => (
+                    <li key={`${setup.id}-best-${item}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="font-semibold text-zinc-100">{uiText.weakMatchups}</p>
+                <ul className="list-disc space-y-1 pl-4">
+                  {setup.weakerAgainst.map((item) => (
+                    <li key={`${setup.id}-weak-${item}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
               <p>
                 <span className="font-semibold text-zinc-100">{uiText.affinity}: </span>
                 {setup.affinity}
@@ -90,10 +107,13 @@ export const InfusableSection = ({ setups, favorites, onToggleFavorite }: Infusa
                 <span className="font-semibold text-zinc-100">{uiText.recommendedBuffs}: </span>
                 {setup.buffs.join(" • ")}
               </p>
-              <div className="flex flex-wrap gap-2">
-                {setup.bestAshes.map((ash) => (
-                  <SimpleBadge key={`${setup.id}-${ash}`} label={ash} />
-                ))}
+              <div>
+                <p className="mb-1 font-semibold text-zinc-100">{uiText.ashOfWar}</p>
+                <div className="flex flex-wrap gap-2">
+                  {setup.bestAshes.map((ash) => (
+                    <SimpleBadge key={`${setup.id}-${ash}`} label={ash} />
+                  ))}
+                </div>
               </div>
             </div>
           </Card>

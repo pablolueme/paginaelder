@@ -3,7 +3,15 @@ import type { AshOfWarEntry, FilterKey, GuideEntryBase, PlayerBuildEntry, Rankin
 
 const stageValues: StageKey[] = ["early", "midgame", "late", "endgame", "todaLaRun"];
 
-const normalize = (value: string): string => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+const normalize = (value: string): string =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 const toSearchBlob = (entry: GuideEntryBase): string => {
   const stageText = entry.stage.map((stage) => stageLabelMap[stage]).join(" ");
@@ -13,6 +21,7 @@ const toSearchBlob = (entry: GuideEntryBase): string => {
     [
       entry.nameEs,
       entry.nameEn,
+      entry.highlightLabel ?? "",
       entry.slug,
       entry.category,
       entry.weaponType,

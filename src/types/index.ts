@@ -66,6 +66,7 @@ export interface GuideEntryBase {
   slug: string;
   nameEs: string;
   nameEn: string;
+  highlightLabel?: string;
   category: EntryCategory;
   stage: StageKey[];
   tags: FilterKey[];

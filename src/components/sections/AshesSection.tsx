@@ -59,6 +59,18 @@ export const AshesSection = ({ ashes, favorites, onToggleFavorite }: AshesSectio
 
             <div className="space-y-3 text-sm text-zinc-200">
               <div>
+                <p className="font-semibold text-zinc-100">{uiText.buildType}</p>
+                <p>{ash.playstyle}</p>
+              </div>
+              <div>
+                <p className="font-semibold text-zinc-100">{uiText.bestUseCases}</p>
+                <ul className="list-disc space-y-1 pl-4">
+                  {ash.bestFor.map((item) => (
+                    <li key={`${ash.id}-best-${item}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
                 <p className="font-semibold text-zinc-100">{uiText.bestWeapons}</p>
                 <ul className="mt-1 space-y-1">
                   {ash.bestWeapons.map((weapon) => (
@@ -88,6 +100,10 @@ export const AshesSection = ({ ashes, favorites, onToggleFavorite }: AshesSectio
               <div>
                 <p className="font-semibold text-zinc-100">{uiText.location}</p>
                 <p>{ash.location}</p>
+              </div>
+              <div>
+                <p className="font-semibold text-zinc-100">{uiText.recommendation}</p>
+                <p>{ash.recommendation}</p>
               </div>
             </div>
           </Card>
