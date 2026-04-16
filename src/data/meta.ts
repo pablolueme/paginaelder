@@ -5,6 +5,7 @@ export const navLinks: NavLink[] = [
   { id: "ranking", label: "Ranking" },
   { id: "armas", label: "Armas" },
   { id: "somber", label: "Armas únicas" },
+  { id: "unicas-fuertes", label: "Únicas muy fuertes" },
   { id: "infusables", label: "Armas infusables" },
   { id: "ashes", label: "Cenizas de guerra" },
   { id: "comparador", label: "Comparador" },
@@ -121,7 +122,8 @@ export const uiText = {
   mainWeapon: "Arma principal",
   secondaryWeapon: "Arma secundaria",
   ashOfWar: "Ceniza de guerra",
-  buildType: "Tipo de build"
+  buildType: "Tipo de build",
+  recommendedGear: "Equipo recomendado"
 };
 
 export const sectionText = {
@@ -152,6 +154,12 @@ export const sectionText = {
     eyebrow: "Armas",
     title: "Armas únicas",
     subtitle: "Fichas somber con enfoque en daño real, facilidad y rutas de obtención del juego base."
+  },
+  uniqueHonorable: {
+    eyebrow: "Armas",
+    title: "Armas únicas muy fuertes",
+    subtitle:
+      "Honorables y builds potentes fuera del top meta principal: opciones de nicho con mucho daño y personalidad."
   },
   infusables: {
     eyebrow: "Armas",

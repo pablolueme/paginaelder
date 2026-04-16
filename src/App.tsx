@@ -5,6 +5,7 @@ import { footerText, homeHighlights, sectionText, uiText } from "./data/meta";
 import { playerBuilds } from "./data/playerBuilds";
 import { regionGuides } from "./data/locations";
 import { infusableSetups, uniqueWeapons } from "./data/weapons";
+import { uniqueHonorableWeapons } from "./data/uniqueHonorableWeapons";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { Footer } from "./components/layout/Footer";
 import { StickyNav } from "./components/layout/StickyNav";
@@ -17,6 +18,7 @@ import { InfusableSection } from "./components/sections/InfusableSection";
 import { LocationsSection } from "./components/sections/LocationsSection";
 import { PlayerBuildsSection } from "./components/sections/PlayerBuildsSection";
 import { RankingSection } from "./components/sections/RankingSection";
+import { UniqueHonorableSection } from "./components/sections/UniqueHonorableSection";
 import { UniqueWeaponsSection } from "./components/sections/UniqueWeaponsSection";
 import { WeaponsIntroSection } from "./components/sections/WeaponsIntroSection";
 import { BuildDrawer } from "./components/ui/BuildDrawer";
@@ -49,6 +51,11 @@ const App = () => {
 
   const filteredInfusableSetups = useMemo(
     () => getFilteredCollection(infusableSetups, search, activeFilters),
+    [search, activeFilters]
+  );
+
+  const filteredUniqueHonorables = useMemo(
+    () => getFilteredCollection(uniqueHonorableWeapons, search, activeFilters),
     [search, activeFilters]
   );
 
@@ -92,6 +99,16 @@ const App = () => {
         titleEn: weapon.nameEn,
         subtitle: sectionText.somber.title,
         href: "#somber"
+      })
+    );
+
+    uniqueHonorableWeapons.forEach((weapon) =>
+      sourceMap.set(`uniqueHonorable:${weapon.id}`, {
+        id: `uniqueHonorable:${weapon.id}`,
+        titleEs: weapon.nameEs,
+        titleEn: weapon.nameEn,
+        subtitle: sectionText.uniqueHonorable.title,
+        href: "#unicas-fuertes"
       })
     );
 
@@ -157,6 +174,12 @@ const App = () => {
         <WeaponsIntroSection />
 
         <UniqueWeaponsSection weapons={filteredUniqueWeapons} favorites={favorites} onToggleFavorite={toggleFavorite} />
+
+        <UniqueHonorableSection
+          weapons={filteredUniqueHonorables}
+          favorites={favorites}
+          onToggleFavorite={toggleFavorite}
+        />
 
         <InfusableSection setups={filteredInfusableSetups} favorites={favorites} onToggleFavorite={toggleFavorite} />
 
