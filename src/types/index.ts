@@ -4,6 +4,7 @@ export type StageKey = "early" | "midgame" | "late" | "endgame" | "todaLaRun";
 
 export type FilterKey =
   | StageKey
+  | "playerBuild"
   | "beginner"
   | "bosses"
   | "area"
@@ -130,16 +131,27 @@ export interface RegionGuide {
 
 export interface PlayerBuildEntry {
   id: string;
+  slug: string;
   author: string;
   buildName: string;
+  subtitle: string;
+  buildType: "strength" | "dex" | "faith" | "arcane" | "magic" | "hybrid";
+  tags: FilterKey[];
   focus: string;
   stage: StageKey[];
   weaponMain: LocalizedName;
   weaponSecondary: LocalizedName;
   ashOfWar: LocalizedName;
+  shortDescription: string;
+  longDescription: string;
+  whenToUse: string;
+  weakerAgainst: string;
+  recommendation: string;
+  notes: string[];
   stats: string[];
-  talismans: string[];
-  buffs: string[];
+  talismans: LocalizedName[];
+  buffs: LocalizedName[];
+  locations: Array<LocalizedName & { howToGet: string }>;
   description: string;
   pros: string[];
   cons: string[];

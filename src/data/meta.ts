@@ -19,6 +19,7 @@ export const filterOptions: FilterOption[] = [
   { key: "late", label: "Late" },
   { key: "endgame", label: "Endgame" },
   { key: "todaLaRun", label: "Toda la run" },
+  { key: "playerBuild", label: "Build de jugador" },
   { key: "beginner", label: "Fácil de usar" },
   { key: "bosses", label: "Jefes" },
   { key: "area", label: "Área" },

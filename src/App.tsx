@@ -21,7 +21,7 @@ import { UniqueWeaponsSection } from "./components/sections/UniqueWeaponsSection
 import { WeaponsIntroSection } from "./components/sections/WeaponsIntroSection";
 import { BuildDrawer } from "./components/ui/BuildDrawer";
 import type { FilterKey, RankingBuild } from "./types";
-import { getFilteredAshes, getFilteredBuilds, getFilteredCollection } from "./utils/filters";
+import { getFilteredAshes, getFilteredBuilds, getFilteredCollection, getFilteredPlayerBuilds } from "./utils/filters";
 
 interface FavoriteViewItem {
   id: string;
@@ -54,6 +54,11 @@ const App = () => {
 
   const filteredAshes = useMemo(
     () => getFilteredAshes(topAshesOfWar, search, activeFilters),
+    [search, activeFilters]
+  );
+
+  const filteredPlayerBuilds = useMemo(
+    () => getFilteredPlayerBuilds(playerBuilds, search, activeFilters),
     [search, activeFilters]
   );
 
@@ -161,7 +166,7 @@ const App = () => {
 
         <LocationsSection regions={regionGuides} />
 
-        <PlayerBuildsSection builds={playerBuilds} />
+        <PlayerBuildsSection builds={filteredPlayerBuilds} />
 
         <FavoritesSection items={favoriteItems} />
       </main>
