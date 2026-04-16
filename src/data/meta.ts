@@ -26,13 +26,16 @@ export const filterOptions: FilterOption[] = [
   { key: "area", label: "Área" },
   { key: "stanceBreak", label: "Rompepostura" },
   { key: "bleed", label: "Hemorragia" },
+  { key: "frost", label: "Escarcha" },
   { key: "magic", label: "Magia" },
   { key: "faith", label: "Fe" },
   { key: "strength", label: "Fuerza" },
   { key: "dex", label: "Destreza" },
   { key: "arcane", label: "Arcano" },
   { key: "infusable", label: "Infusable" },
-  { key: "unique", label: "Única" }
+  { key: "unique", label: "Única" },
+  { key: "dark", label: "Build oscura" },
+  { key: "skillDamage", label: "Daño de habilidad" }
 ];
 
 export const filterLabelMap: Record<FilterKey, string> = filterOptions.reduce((acc, item) => {
@@ -104,8 +107,12 @@ export const uiText = {
   weakMatchups: "Cuándo rinde peor",
   recommendedStats: "Atributos recomendados",
   recommendedTalismans: "Talismanes recomendados",
+  recommendedSeals: "Sellos recomendados",
+  recommendedIncantations: "Conjuros recomendados",
   recommendedBuffs: "Mejoras recomendadas",
   howToGet: "Cómo conseguirla",
+  howToPlay: "Cómo se juega",
+  armorStyle: "Armadura / estética",
   difficulty: "Dificultad",
   scaling: "Escalado",
   playstyle: "Estilo de juego",
